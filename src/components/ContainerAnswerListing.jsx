@@ -1,12 +1,21 @@
-import AnswerListing from "./AnswerListing";
 
-function ContainerAnswerListing({modalOpen}) {
+import AnswerListing from "./AnswerListing";
+import QuestionListing from "./QuestionListing";
+
+function ContainerAnswerListing({modalOpen, answers, isAnswer}) {
     return (
         <div className="flex flex-col gap-20 items-center w-full pt-16">
-            {new Array(10).fill(0).map((_, i) => (
-                <AnswerListing key={i} question="How to use React Router Dom" topic="Routing" id={i} modalOpen={modalOpen} />
-            ))}
+            {isAnswer ? (
+                answers.map((item, i) => (
+                    <AnswerListing key={i}  question={item.question} answer={item.answer} answerer_id={item.answerer_id} language={item.language} id={i} modalOpen={modalOpen} />
+                ))
+            ) : (
+                answers.map((item, i) => (
+                    <QuestionListing key={i}  question={item.question} answer={item.answer} answerer_id={item.answerer_id} language={item.language} id={item.id} modalOpen={modalOpen} />
+                ))
+            )}
         </div>
     )
 }
-export default ContainerAnswerListing
+
+export default ContainerAnswerListing;

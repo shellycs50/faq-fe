@@ -1,13 +1,7 @@
 
 import { Editor } from "@tinymce/tinymce-react";
-import { useRef } from "react";
-function QuestionBuilder() {
-    const editorRef = useRef(null);
-    const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
+import { useEffect, useRef } from "react";
+function QuestionBuilder({editorRef}) {
   return (
     <div className="flex flex-col gap-5">
       <Editor
@@ -30,7 +24,6 @@ function QuestionBuilder() {
         }}
       />
       <div className="flex flex-row justify-center gap-5">
-      <a onClick={log} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition">Log editor content</a>
       </div>
     </div>
   );

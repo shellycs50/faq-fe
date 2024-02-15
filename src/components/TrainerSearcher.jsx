@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import useThrottle from "../Helpers/useThrottle";
 import Cookies from 'js-cookie'
 import DOMPurify from "dompurify";
-function Searcher({ answers, setAnswers, url, query, setQuery }) {
+function TrainerSearcher({ answers, setAnswers, url, query, setQuery }) {
     const [userQuery, setUserQuery] = useState("");
     // debounce
     const timeoutRef = useRef(null);
@@ -21,22 +21,8 @@ function basicTokenizer(text) {
     return text.toLowerCase().split(' ');
 }
 
-function listify(str_arr) {
-    let output = ''
-    str_arr.forEach((string) => {
-        output += `'${string}',`
-    })
-    return output.slice(0, output.length - 1)
-
-}
-
 async function fetchQaps() {
     let path = `http://localhost:8000/api/${url}`;
-    // const tokens = basicTokenizer(query);
-    
-    //     path += '?searchtokens=['
-    //     path += listify(tokens)
-    //     path += ']'
     
     console.log(path)
     const response = await fetch(path, {
@@ -48,13 +34,8 @@ async function fetchQaps() {
         },
     });
     const data = await response.json();
-    let clean = data.data.map((item) => {
-        return {
-            ...item,
-            answer: DOMPurify.sanitize(item.answer)
-        };
-    });
-    setAnswers(clean);
+    console.log(data)
+    setAnswers(data.data);
 }
 const throttle = useThrottle();
 
@@ -62,7 +43,7 @@ const throttle = useThrottle();
 useEffect(() => {
     console.log(query)
     fetchQaps();
-    Cookies.set('student_search', query, { expires: 7 });
+    Cookies.set('trainer_search', query, { expires: 7 });
 }, [])
 
 useEffect(() => { 
@@ -99,10 +80,10 @@ function tokenSort(queryArray, resultsArray) {
 return (
     <div className="flex flex-col pt-20 items-center font-sans text-6xl">
         <form className="flex flex-row justify-center border-b-4 border-b-solid border-black  text-black w-1/2 placeholder-slate-900">
-            <input placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="w-full h-24 text-slate-900 p-3 focus:placeholder-no-outline" />
+            <input placeholder="Search for questions"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="w-full h-24 text-5xl text-slate-900 p-3 focus:placeholder-no-outline" />
         </form>
     </div>
 )
 }
 
-export default Searcher
+export default TrainerSearcher

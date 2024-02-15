@@ -8,8 +8,12 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isError, setIsError] = useState(false);
 
-  async function authenticate() {
+  async function authenticate(event) {
+    event.preventDefault();
+    setIsError(false);
+    console.log('attempting to authenticate')
     try {
       const response = await fetch("http://localhost:8000/api/login", {
         method: "POST",
@@ -24,12 +28,17 @@ function Login() {
   
       const result = await response.json();
       saveCookie(result.token);
-      console.log(result.rank)
+      console.log(result.token)
       if (result.rank == 1) {
+        Cookies.set('admin', 1, { expires: 7 }); //for the scale of the project this is fine, because all admin routes are protected by auth key verification.
         navigate('/trainerpost')
       }
-      else {
+      if (result.rank == 0){
+        Cookies.set('admin', 0, { expires: 7 });
         navigate('/studenthome')
+      }
+      else {
+        setIsError(true);
       }
 
 
@@ -50,6 +59,7 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-6">Login</h2>
+        <h4 className={`${isError ? "pb-6 text-lg text-red-500" : "pb-6 text-lg text-white"}`}>The provided credentials are invalid.</h4>
         <form>
         <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-600">
@@ -79,10 +89,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <a
-            
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition" onClick={()=>authenticate()}
-          >Login</a>
+          <button type='submit' className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer" onClick={authenticate}>Login</button>
            
           
         </form>
