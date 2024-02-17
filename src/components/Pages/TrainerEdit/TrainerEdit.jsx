@@ -21,7 +21,7 @@ function TrainerEdit() {
    
 
     async function fetchQuestion(id) {
-        const response = await fetch(`http://localhost:8000/api/trainer/faq/${id}`, {
+        const response = await fetch(`https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/trainer/faq/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,15 +58,19 @@ function TrainerEdit() {
         const bodyObj = {
             qap_id: id,
             question: title,
-            answer: answer,
             language_id: selectedLangId,
         }
+
+        if (answer !== "<p>Write your answer here.</p>") {
+            bodyObj['answer'] = answer;
+        }
+
         if (title !== cache.title) {
             bodyObj['question_rename'] = title;
         }
         
         try {
-          const response = await fetch("http://localhost:8000/api/trainer/faq", {
+          const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/trainer/faq", {
             method: "PUT",
             headers: {
                 'Authorization': `Bearer ${Cookies.get('auth_key')}`,

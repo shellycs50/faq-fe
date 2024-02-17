@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function Register() {
  const [firstName, setFirstName] = useState("")
  const [lastName, setLastName] = useState("")
@@ -13,6 +13,7 @@ function Register() {
   password: "",
  })
  const navigate = useNavigate();
+
  async function authenticate() {
   setErrors({
     first_name: "",
@@ -21,7 +22,7 @@ function Register() {
     password: "",
    })
   try {
-    const response = await fetch("http://localhost:8000/api/signup", {
+    const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,10 +53,6 @@ function Register() {
     else {
       navigate('/login')
     }
-    
-
-    
-    
   } catch (error) {
     console.error("Error:", error);
   }
@@ -133,8 +130,14 @@ function saveCookie(token) {
             onClick={() => authenticate()}
             className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition"
           >
+            
             Register
           </a>
+
+          <p className="mt-4">
+          Already have an account? <Link to="/login" className="text-blue-500">Login here</Link>.
+        </p>
+          
         </form>
       </div>
     </div>

@@ -22,7 +22,7 @@ function basicTokenizer(text) {
 }
 
 async function fetchQaps() {
-    let path = `http://localhost:8000/api/${url}`;
+    let path = `https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/${url}`;
     
     console.log(path)
     const response = await fetch(path, {

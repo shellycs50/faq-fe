@@ -3,8 +3,15 @@ import useThrottle from "../Helpers/useThrottle";
 import Cookies from 'js-cookie'
 import DOMPurify from "dompurify";
 function Searcher({ answers, setAnswers, url, query, setQuery }) {
+useEffect(() => {   
+    if (Cookies.get('student_search') !== undefined) {
+        setQuery(Cookies.get('student_search'))
+    }
+}, [])
+
     const [userQuery, setUserQuery] = useState("");
     // debounce
+    // user query is not being used for display, its just the middleman between input, debounce and query
     const timeoutRef = useRef(null);
     useEffect(() => {
         if (timeoutRef.current) {
@@ -20,25 +27,8 @@ function basicTokenizer(text) {
     text = text.replace(/\s+/g, ' ').trim();
     return text.toLowerCase().split(' ');
 }
-
-function listify(str_arr) {
-    let output = ''
-    str_arr.forEach((string) => {
-        output += `'${string}',`
-    })
-    return output.slice(0, output.length - 1)
-
-}
-
 async function fetchQaps() {
-    let path = `http://localhost:8000/api/${url}`;
-    // const tokens = basicTokenizer(query);
-    
-    //     path += '?searchtokens=['
-    //     path += listify(tokens)
-    //     path += ']'
-    
-    console.log(path)
+    let path = `https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/${url}`;
     const response = await fetch(path, {
         method: 'GET',
         headers: {
@@ -62,7 +52,7 @@ const throttle = useThrottle();
 useEffect(() => {
     console.log(query)
     fetchQaps();
-    Cookies.set('student_search', query, { expires: 7 });
+    Cookies.set('student_search', query, { expires: 1 });
 }, [])
 
 useEffect(() => { 

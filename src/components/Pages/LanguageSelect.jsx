@@ -7,7 +7,7 @@ function LanguageSelect({selectstyles = '', optionstyles = '', selectedLangId, s
     }, [])
 
     async function fetchLanguages() {
-        const response = await fetch("http://localhost:8000/api/languages", {
+        const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/languages", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

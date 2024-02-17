@@ -18,7 +18,7 @@ function StudentPost() {
         setUploadError(false);
         console.log('attempting to upload')
         try {
-            const response = await fetch("http://localhost:8000/api/student/faq", {
+            const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/student/faq", {
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${Cookies.get('auth_key')}`,

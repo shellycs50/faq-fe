@@ -38,7 +38,7 @@ function TrainerPost() {
         const answer = editorRef.current.getContent();
         console.log('attempting to upload')
         try {
-          const response = await fetch("http://localhost:8000/api/trainer/faq", {
+          const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/trainer/faq", {
             method: "POST",
             headers: {
                 'Authorization': `Bearer ${Cookies.get('auth_key')}`,
@@ -89,7 +89,7 @@ function TrainerPost() {
                 <button type='submit' onClick={submitHandler} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Submit</button>
                 </div>
             </form>
-            <h4 className={`${uploadError ? "pb-6 text-lg text-red-500" : "pb-6 text-lg text-white"}`}>There was an error uploading the question.</h4>
+            {uploadError && <h4 className="pb-6 text-lg text-red-500">There was an error uploading the question.</h4>}
         </div>
     );
 }
