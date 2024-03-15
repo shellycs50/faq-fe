@@ -59,7 +59,7 @@ useEffect(() => {
 
 useEffect(() => {
     // throttle(sortQaps, 1000) throttle 
-    sortQaps
+    sortQaps()
 }, [query])
 
 function sortQaps() { 
@@ -68,22 +68,25 @@ function sortQaps() {
     setAnswers(tokenSort(tokens, Qaps));
 }
 
+
 function tokenSort(queryArray, resultsArray) {
+    // count case insensitive matches of words in the query string with words in question title, (for each question answer pair object)
+    // sort desc on matches
+    // serialise back to qap without score (probably a waste of compute but OK for now)
+    // return sorted results array
+
     let rankedPosts = [];
     resultsArray.forEach(qap => {
         let questionTokens = qap.tokens.toLowerCase().split(" ");
         let matches = queryArray.filter(token => questionTokens.includes(token));
-        let score = matches.length; // Simple scoring based on token matches
+        let score = matches.length;
         rankedPosts.push({
             'post': qap,
             'score': score
         });
     });
-
-    // Sort FAQ posts based on relevance scores
-    rankedPosts.sort((a, b) => b.score - a.score); // Sort in descending order of scores
-
-    rankedPosts = rankedPosts.map(post => post.post); // Remove the score from the list
+    rankedPosts.sort((a, b) => b.score - a.score);
+    rankedPosts = rankedPosts.map(post => post.post);
     return rankedPosts;
 }
 

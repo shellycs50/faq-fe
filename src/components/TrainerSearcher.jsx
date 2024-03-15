@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-import useThrottle from "../Helpers/useThrottle";
+// import useThrottle from "../Helpers/useThrottle";
 import Cookies from 'js-cookie'
-import DOMPurify from "dompurify";
+
 function TrainerSearcher({ answers, setAnswers, url, query, setQuery }) {
     const [userQuery, setUserQuery] = useState("");
+    // const throttle = useThrottle();
     // debounce
     const timeoutRef = useRef(null);
     useEffect(() => {
@@ -34,7 +35,6 @@ async function fetchQaps() {
     const data = await response.json();
     setAnswers(data.data);
 }
-const throttle = useThrottle();
 
 //main hook to fetch data
 useEffect(() => {
@@ -43,7 +43,8 @@ useEffect(() => {
 }, [])
 
 useEffect(() => { 
-    throttle(sortQaps, 1000)
+    // throttle(sortQaps, 500) currently redundant
+    sortQaps()
 }, [query])
 
 function sortQaps() { 
@@ -53,21 +54,22 @@ function sortQaps() {
 }
 
 function tokenSort(queryArray, resultsArray) {
+    // count case insensitive matches of words in the query string with words in question title, (for each question answer pair object)
+    // sort desc on matches
+    // serialise back to qap without score (probably a waste of compute but OK for now)
+    // return sorted results array
     let rankedPosts = [];
     resultsArray.forEach(qap => {
         let questionTokens = qap.tokens.toLowerCase().split(" ");
         let matches = queryArray.filter(token => questionTokens.includes(token));
-        let score = matches.length; // Simple scoring based on token matches
+        let score = matches.length;
         rankedPosts.push({
             'post': qap,
             'score': score
         });
     });
-
-    // Sort FAQ posts based on relevance scores
-    rankedPosts.sort((a, b) => b.score - a.score); // Sort in descending order of scores
-
-    rankedPosts = rankedPosts.map(post => post.post); // Remove the score from the list
+    rankedPosts.sort((a, b) => b.score - a.score);
+    rankedPosts = rankedPosts.map(post => post.post); 
     return rankedPosts;
 }
 
