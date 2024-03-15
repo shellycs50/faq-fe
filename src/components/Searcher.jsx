@@ -1,17 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import useThrottle from "../Helpers/useThrottle";
+// import useThrottle from "../Helpers/useThrottle";
 import Cookies from 'js-cookie'
 import DOMPurify from "dompurify";
-function Searcher({ answers, setAnswers, url, query, setQuery }) {
-useEffect(() => {   
-    if (Cookies.get('student_search') !== undefined) {
-        setQuery(Cookies.get('student_search'))
-    }
-}, [])
-
+function Searcher({ answers, setAnswers, url }) {
     const [userQuery, setUserQuery] = useState("");
+    const [query, setQuery] = useState("");
+    // const throttle = useThrottle();
     // debounce
-    // user query is not being used for display, its just the middleman between input, debounce and query
     const timeoutRef = useRef(null);
     useEffect(() => {
         if (timeoutRef.current) {
@@ -27,6 +22,15 @@ function basicTokenizer(text) {
     text = text.replace(/\s+/g, ' ').trim();
     return text.toLowerCase().split(' ');
 }
+
+// function listify(str_arr) {
+//     let output = ''
+//     str_arr.forEach((string) => {
+//         output += `'${string}',`
+//     })
+//     return output.slice(0, output.length - 1)
+// }
+
 async function fetchQaps() {
     let path = `https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/${url}`;
     const response = await fetch(path, {
@@ -46,17 +50,16 @@ async function fetchQaps() {
     });
     setAnswers(clean);
 }
-const throttle = useThrottle();
 
-//main hook to fetch data
+
 useEffect(() => {
-    console.log(query)
     fetchQaps();
-    Cookies.set('student_search', query, { expires: 1 });
+    Cookies.set('student_search', query, { expires: 7 });
 }, [])
 
-useEffect(() => { 
-    throttle(sortQaps, 1000)
+useEffect(() => {
+    // throttle(sortQaps, 1000) throttle 
+    sortQaps
 }, [query])
 
 function sortQaps() { 
@@ -68,7 +71,6 @@ function sortQaps() {
 function tokenSort(queryArray, resultsArray) {
     let rankedPosts = [];
     resultsArray.forEach(qap => {
-        console.log(qap.tokens, queryArray)
         let questionTokens = qap.tokens.toLowerCase().split(" ");
         let matches = queryArray.filter(token => questionTokens.includes(token));
         let score = matches.length; // Simple scoring based on token matches
@@ -94,5 +96,6 @@ return (
     </div>
 )
 }
+
 
 export default Searcher

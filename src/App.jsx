@@ -13,6 +13,7 @@ import TrainerEdit from './components/Pages/TrainerEdit/TrainerEdit';
 import StudentNav from './components/Navs/StudentNav';
 import AdminNav from './components/Navs/AdminNav';
 import Cookies from 'js-cookie';
+import Success from './components/Pages/Success/Success';
 function App() { 	
   
   function LogOut() {
@@ -52,6 +53,7 @@ useEffect(() => {
           <Route path='/trainerpost' element={<TrainerPost />} />
           <Route path='/trainerarchive' element={<TrainerArchive/>} />
           <Route path='/traineredit/:id' element={<TrainerEdit />} />
+          <Route path='/success' element={<Success />} />
           <Route path='*' element={<Navigate to="/login"/>} />
         </Routes>
     </BrowserRouter>

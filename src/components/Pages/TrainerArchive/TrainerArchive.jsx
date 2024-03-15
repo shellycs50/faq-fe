@@ -12,12 +12,9 @@ function TrainerArchive() {
     const [modalContent, setModalContent] = useState("");
     
     function modalOpen(id) {
-        console.log(id)
         navigate(`/traineredit/${id}`)
     }
-    useEffect(() => {
-        console.log({answers})
-    }, [answers])
+    
     return (
         <div>
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : (

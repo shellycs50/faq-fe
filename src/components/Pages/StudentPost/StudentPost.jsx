@@ -16,7 +16,6 @@ function StudentPost() {
     async function submitHandler(event) {
         event.preventDefault();
         setUploadError(false);
-        console.log('attempting to upload')
         try {
             const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/student/faq", {
                 method: "POST",
@@ -31,9 +30,17 @@ function StudentPost() {
             });
 
             const result = await response.json();
-            console.log(result);
+            if (result.message == "Validation error") {
+                let newstr = ""
+                for (const key in result.errors) {
+                    newstr += result.errors[key]
+                }
+                setErrorMessage(newstr);
+            }
+            if (response.status === 201) {
+                navigate("/success");
+            }
         } catch (error) {
-            console.error("Error:", error);
             let errorString = "";
             for (const key in error.errors) {
                 errorString += error.errors[key] + " ";
@@ -55,7 +62,7 @@ function StudentPost() {
                     setSelectedLangId={setSelectedLangId}
                 />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col md:w-72">
                     <label
                         htmlFor="message"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -71,13 +78,20 @@ function StudentPost() {
                         onChange={(e) => setTitle(e.target.value)}
                     ></textarea>
                 </div>
-                {uploadError && <p className="col-span-3 text-red-500">{errorMessage && errorMessage}</p>}
+                {/* this is horrible but im rushing */}
+                <div></div> 
+                <div></div>
+                <div className="flex flex-col items-center">
+                {errorMessage != "" && <p className="col-span-3 text-red-500">{errorMessage}</p>}
                 <button
-                    className="col-span-3 px-4 py-2 mt-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+                    className="col-span-3 px-4 py-2 mt-4 text-lg font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 w-full"
                     onClick={submitHandler}
                 >
                     Submit
                 </button>
+                </div>
+                
+                
             </div>
         </div>
     );

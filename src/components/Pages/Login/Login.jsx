@@ -13,7 +13,6 @@ function Login() {
   async function authenticate(event) {
     event.preventDefault();
     setIsError(false);
-    console.log('attempting to authenticate')
     try {
       const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/login", {
         method: "POST",
@@ -28,7 +27,6 @@ function Login() {
   
       const result = await response.json();
       saveCookie(result.token);
-      console.log(result.token)
       if (result.rank == 1) {
         Cookies.set('admin', 1, { expires: 7 }); //for the scale of the project this is fine, and all admin routes are protected by auth key verification.
         navigate('/trainerpost')
@@ -49,7 +47,7 @@ function Login() {
 
   function saveCookie(token) {
     Cookies.set('auth_key', token, { expires: 7 });
-    console.log(token)
+    
   }
 
   useEffect(() => {

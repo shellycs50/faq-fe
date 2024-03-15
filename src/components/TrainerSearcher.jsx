@@ -23,8 +23,6 @@ function basicTokenizer(text) {
 
 async function fetchQaps() {
     let path = `https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/${url}`;
-    
-    console.log(path)
     const response = await fetch(path, {
         method: 'GET',
         headers: {
@@ -34,14 +32,12 @@ async function fetchQaps() {
         },
     });
     const data = await response.json();
-    console.log(data)
     setAnswers(data.data);
 }
 const throttle = useThrottle();
 
 //main hook to fetch data
 useEffect(() => {
-    console.log(query)
     fetchQaps();
     Cookies.set('trainer_search', query, { expires: 7 });
 }, [])
@@ -59,7 +55,6 @@ function sortQaps() {
 function tokenSort(queryArray, resultsArray) {
     let rankedPosts = [];
     resultsArray.forEach(qap => {
-        console.log(qap.tokens, queryArray)
         let questionTokens = qap.tokens.toLowerCase().split(" ");
         let matches = queryArray.filter(token => questionTokens.includes(token));
         let score = matches.length; // Simple scoring based on token matches

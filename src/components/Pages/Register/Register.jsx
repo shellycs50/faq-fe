@@ -41,26 +41,22 @@ function Register() {
       // do some error settings with the fields (json will return obj of fields that have errors)
       let res = await response.json()
       const newErrors = {...errors}
-      console.log(res.errors)
       for (const key in res.errors) {
         if (Object.prototype.hasOwnProperty.call(newErrors, key)) {
           newErrors[key] = res.errors[key];
         }
       }
       setErrors(newErrors)
-      console.log(newErrors)
     }
     else {
       navigate('/login')
     }
   } catch (error) {
-    console.error("Error:", error);
   }
 }
 
 function saveCookie(token) {
   Cookies.set('auth_key', token, { expires: 7 });
-  console.log(token)
 }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
