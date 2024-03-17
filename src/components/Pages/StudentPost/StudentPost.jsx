@@ -56,7 +56,7 @@ function StudentPost() {
                 <div>
                 <LanguageSelect
                     id="langselect"
-                    selectstyles="text-lg"
+                    selectstyles="text-lg rounded-lg p-1"
                     optionstyles="text-lg"
                     selectedLangId={selectedLangId}
                     setSelectedLangId={setSelectedLangId}

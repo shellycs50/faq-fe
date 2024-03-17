@@ -15,7 +15,7 @@ import AdminNav from './components/Navs/AdminNav';
 import Cookies from 'js-cookie';
 import Success from './components/Pages/Success/Success';
 function App() { 	
-  
+
   function LogOut() {
     console.log('attempting to logout')
     // const navigate = useNavigate();
