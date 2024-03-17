@@ -26,8 +26,9 @@ function PostModal({ content, setIsModalOpen }) {
     }, [])
 
     return (
-        <div className=" flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white flex flex-col rounded-lg mt-10 m-3">
+        <div className="flex items-center justify-center bg-black bg-opacity-50 h-screen">
+            <div>
+            <div className="bg-white flex flex-col rounded-3xl m-3">
 
                     <div className='flex flex-row justify-end'>
                     <FaTimes
@@ -37,7 +38,8 @@ function PostModal({ content, setIsModalOpen }) {
                     </div>
                 
                 <div className="mx-60 pb-12 rounded-lg" dangerouslySetInnerHTML={{ __html: content }}></div>
-                <div className='h-80 bg-black bg-opacity-50'></div>
+                
+            </div>
             </div>
         </div>
     );
