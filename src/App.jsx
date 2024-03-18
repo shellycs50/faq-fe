@@ -16,6 +16,7 @@ import StudentNav from './components/Navs/StudentNav';
 import AdminNav from './components/Navs/AdminNav';
 import Cookies from 'js-cookie';
 import Success from './components/Pages/Success/Success';
+import PlaceholderNav from './components/Navs/PlaceholderNav';
 
 function App() {
   const queryClient = new QueryClient();
@@ -39,13 +40,14 @@ function App() {
         setIsAdmin(Cookies.get('admin'))
         clearInterval(NavbarHack);
       }
-    }, 1000);
+    }, 100);
     return () => clearInterval(NavbarHack);
   }, [])
 
   return (
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+      {isAdmin === undefined && <PlaceholderNav />}
       {isAdmin == 1 && <AdminNav LogOut={LogOut} />}
       {isAdmin == 0 && <StudentNav LogOut={LogOut} />}
 
@@ -64,7 +66,7 @@ function App() {
       </Routes>
     
     </BrowserRouter>
-    <ReactQueryDevtools initialIsOpen={false} />
+    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }
