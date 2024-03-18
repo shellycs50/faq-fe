@@ -13,7 +13,7 @@ function StudentHome() {
     
 const { isLoading, error, data: queryData } = useQuery({
     queryFn: () => fetchQaps(),
-    queryKey: ['qaps'],
+    queryKey: ['studentqaps'],
 })
 
 useEffect(() => {
