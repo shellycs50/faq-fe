@@ -18,7 +18,7 @@ function TrainerArchive() {
     const { isLoading, error, data: queryData } = useQuery({
         queryFn: () => fetchQaps(),
         queryKey: ['trainerqaps'],
-        staleTime: 1000000,
+        staleTime: 3600000, // 1 hour in ms
     })
     
     useEffect(() => {

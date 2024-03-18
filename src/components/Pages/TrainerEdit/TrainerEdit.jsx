@@ -102,14 +102,15 @@ function TrainerEdit() {
       }
 
     return (
-        <div>
-            <h1 className="text-4xl text-center font-bold pt-10">Quick Add</h1>
-            <form>
-                <div className="flex flex-row justify-around h-full w-full">
-                <div className="px-10 flex flex-col justify-start gap-12"> 
-                <div className="flex flex-col gap-1">
-                    <label htmlFor='langselect' className="text-sm text-gray-500">Language</label>
-                    <LanguageSelect id='langselect' selectstyles="text-lg" optionstyles="text-lg" selectedLangId={selectedLangId} setSelectedLangId={setSelectedLangId} />
+        <div className="bg-slate-500 h-screenminusnav">
+    <div className="rounded-lg bg-slate-800 pb-10">
+        <h1 className="text-4xl text-center font-bold p-10 bg-slate-500 text-white rounded-lg">Quick Add</h1>
+        <form className="mt-10">
+            <div className="flex flex-row justify-around h-full w-full">
+                <div className="px-10 flex flex-col justify-start gap-12">
+                    <div className="flex flex-col gap-1">
+                        <label htmlFor='langselect' className="text-sm text-gray-500">Language</label>
+                        <LanguageSelect id='langselect' selectstyles="text-lg rounded-lg p-1" optionstyles="text-lg" selectedLangId={selectedLangId} setSelectedLangId={setSelectedLangId} />
                     </div>
                     
                     <div className="mb-2 flex flex-col gap-1">
@@ -123,19 +124,18 @@ function TrainerEdit() {
                             style={{ height: "200px" }}
                         />
                     </div>
-                    {uploadError != "" && <h4>{uploadError}</h4>}
+                    {uploadError != "" && <h4 className="pb-6 text-lg text-red-500">{uploadError}</h4>}
                 </div>
                 <QuestionBuilder editorRef={editorRef}/>
-                </div>
-                <div className="flex flex-row justify-center gap-5">
+            </div>
+            <div className="flex flex-row justify-center gap-5">
                 <a onClick={resetToCache} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Reset All Values</a> 
                 <button type='submit' onClick={submitHandler} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Submit</button>
-                
-                </div>
-                
-            </form>
-            
-        </div>
+            </div>
+        </form>
+    </div>
+</div>
+
     );
 }
 

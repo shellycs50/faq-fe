@@ -46,8 +46,8 @@ function TrainerPost() {
       }
 
     return (
-        <div className="rounded-lg bg-slate-800">
-            <div className="flex flex-row justify-between"></div>
+        <div className="bg-slate-500 h-screenminusnav">
+        <div className="rounded-lg bg-slate-800 pb-10">
             <h1 className="text-4xl text-center font-bold p-10 bg-slate-500 text-white rounded-lg">Add a Question and Answer in one go.</h1>
             <form className="mt-10">
                 <div className="flex flex-row justify-around h-full w-full">
@@ -76,7 +76,7 @@ function TrainerPost() {
                 <button type='submit' onClick={submitHandler} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Submit</button>
                 </div>
             </form>
-            
+        </div>
         </div>
     );
 }

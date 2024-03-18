@@ -14,7 +14,10 @@ export default {
         'no-outline': {
           outline: 'none',
         }
-      }
+      },
+      spacing: {
+        'screenminusnav': 'calc(100vh - 76px)',
+      },
     },
   },
   plugins: [],
