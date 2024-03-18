@@ -54,11 +54,13 @@ async function fetchQaps() {
 
 useEffect(() => {
     fetchQaps();
-    Cookies.set('student_search', query, { expires: 7 });
+    // Cookies.get('search') && setQuery(Cookies.get('search')); needs fixing
+    sortQaps()
 }, [])
 
 useEffect(() => {
     // throttle(sortQaps, 1000) throttle 
+    // Cookies.set('search', query); needs fixing
     sortQaps()
 }, [query])
 
@@ -92,7 +94,7 @@ function tokenSort(queryArray, resultsArray) {
 
 
 return (
-    <div className="flex flex-col pt-20 items-center font-sans text-6xl">
+    <div onSubmit={(e) => e.preventDefault()} className="flex flex-col pt-20 items-center font-sans text-6xl">
         <form className="flex flex-row justify-center border-b-4 border-b-solid border-black  text-black w-1/2 placeholder-slate-900">
             <input placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="w-full h-24 text-slate-900 p-3 focus:placeholder-no-outline" />
         </form>

@@ -15,31 +15,31 @@ function PostModal({ content, setIsModalOpen }) {
     function scrollToTop() {
         var currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
         if (currentPosition > 0) {
-          window.requestAnimationFrame(scrollToTop);
-          window.scrollTo(0, currentPosition - currentPosition / 8);
+            window.requestAnimationFrame(scrollToTop);
+            window.scrollTo(0, currentPosition - currentPosition / 8);
         }
 
     }
 
-    useEffect(() => {   
+    useEffect(() => {
         scrollToTop();
     }, [])
 
     return (
         <div className="flex items-center justify-center bg-black bg-opacity-50 h-screen">
             <div>
-            <div className="bg-white flex flex-col rounded-3xl m-3">
+                <div className="bg-white flex flex-col rounded-3xl m-3">
 
                     <div className='flex flex-row justify-end'>
-                    <FaTimes
-                        className="cursor-pointer hover:text-red-500 transition-all duration-300 ease-in-out relative right-7 top-7 text-3xl"
-                        onClick={() => setIsModalOpen(false)}
-                    />
+                        <FaTimes
+                            className="cursor-pointer hover:text-red-500 transition-all duration-300 ease-in-out relative right-7 top-7 text-3xl"
+                            onClick={() => setIsModalOpen(false)}
+                        />
                     </div>
-                
-                <div className="mx-60 pb-12 rounded-lg" dangerouslySetInnerHTML={{ __html: content }}></div>
-                
-            </div>
+
+                    <div className="mx-60 pb-12 rounded-lg" dangerouslySetInnerHTML={{ __html: content }}></div>
+
+                </div>
             </div>
         </div>
     );
