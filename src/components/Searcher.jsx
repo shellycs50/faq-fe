@@ -1,8 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 // import useThrottle from "../Helpers/useThrottle";
-import Cookies from 'js-cookie'
-import DOMPurify from "dompurify";
-function Searcher({ answers, setAnswers, url }) {
+function Searcher({ answers, setAnswers }) {
     const [userQuery, setUserQuery] = useState("");
     const [query, setQuery] = useState("");
     // const throttle = useThrottle();
@@ -22,41 +20,6 @@ function basicTokenizer(text) {
     text = text.replace(/\s+/g, ' ').trim();
     return text.toLowerCase().split(' ');
 }
-
-// function listify(str_arr) {
-//     let output = ''
-//     str_arr.forEach((string) => {
-//         output += `'${string}',`
-//     })
-//     return output.slice(0, output.length - 1)
-// }
-
-async function fetchQaps() {
-    let path = `https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/${url}`;
-    const response = await fetch(path, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + Cookies.get('auth_key'),
-            'no-cors': 'true'
-        },
-    });
-    const data = await response.json();
-    let clean = data.data.map((item) => {
-        return {
-            ...item,
-            answer: DOMPurify.sanitize(item.answer)
-        };
-    });
-    setAnswers(clean);
-}
-
-
-useEffect(() => {
-    fetchQaps();
-    // Cookies.get('search') && setQuery(Cookies.get('search')); needs fixing
-    sortQaps()
-}, [])
 
 useEffect(() => {
     // throttle(sortQaps, 1000) throttle 
