@@ -14,6 +14,7 @@ function StudentHome() {
 const { isLoading, error, data: queryData } = useQuery({
     queryFn: () => fetchQaps(),
     queryKey: ['studentqaps'],
+    staleTime: 1000000,
 })
 
 useEffect(() => {

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Cookies from 'js-cookie'
 import DOMPurify from "dompurify";
+import Searcher from "../../Searcher";
 
 function TrainerArchive() {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ function TrainerArchive() {
     const { isLoading, error, data: queryData } = useQuery({
         queryFn: () => fetchQaps(),
         queryKey: ['trainerqaps'],
+        staleTime: 1000000,
     })
     
     useEffect(() => {
@@ -55,7 +57,7 @@ function TrainerArchive() {
         <div>
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : (
                 <>
-                    <TrainerSearcher setAnswers={setAnswers} setQuery={setQuery} query={query} answers={answers}/>
+                    <Searcher setAnswers={setAnswers} setQuery={setQuery} query={query} answers={answers}/>
                     <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={false}/>
                 </>
             )}
