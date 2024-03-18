@@ -1,6 +1,6 @@
 # FAQ 
 
-### A Trainer-Student Forum built using React, PHP, mySQL and Tailwind CSS.
+### A Trainer-Student Forum built using React, PHP, Laravel, mySQL and Tailwind CSS.
 
 ## Features
 **For Students:**
