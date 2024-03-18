@@ -7,38 +7,16 @@ import QuestionBuilder from "../../QuestionBuilder";
 function TrainerPost() {
     const [selectedLangId, setSelectedLangId] = useState(0);
     const [title, setTitle] = useState(""); 
-    const [uploadError, setUploadError] = useState(false);
+    const [uploadError, setUploadError] = useState("");
     const editorRef = useRef(null);
     const navigate = useNavigate();
-    // useEffect(() => {
-    //     validate()
-    // }, [])
-
-   async function validate() {
-    // not working
-        const response = await fetch("http://localhost:8000/api/validateadmin", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Bearer': Cookies.get('auth_key'),
-            },
-        })
-        if (response.status !== 200) {
-            console.log('Not Authorized')
-        }
-        else {
-            console.log('Authorized')
-        }
-        const data = await response.json();
-        console.log(data)
-    }
+  
     async function submitHandler(event) {
         event.preventDefault();
         setUploadError(false);
         const answer = editorRef.current.getContent();
-        console.log('attempting to upload')
         try {
-          const response = await fetch("http://localhost:8000/api/trainer/faq", {
+          const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/trainer/faq", {
             method: "POST",
             headers: {
                 'Authorization': `Bearer ${Cookies.get('auth_key')}`,
@@ -50,11 +28,20 @@ function TrainerPost() {
                 language_id: selectedLangId,
             }),
           });
-      
+          
           const result = await response.json();
-            console.log(result);
+            if (result.message === "Success") {
+                navigate("/success");
+            }
+            if (result.message === "Validation error") {
+                let errorstr = "";
+                for (const key in result.errors) {
+                    errorstr += result.errors[key];
+                }
+                setUploadError(errorstr);   
+            }
         } catch (error) {
-          console.error("Error:", error);
+            setUploadError(error)
         }
       }
 
@@ -81,7 +68,7 @@ function TrainerPost() {
                             style={{ height: "200px" }}
                         />
                     </div>
-                
+                    <h4 className="pb-6 text-lg text-red-500">{uploadError != "" && uploadError}</h4>
                 </div>
                 <QuestionBuilder editorRef={editorRef}/>
                 </div>
@@ -89,7 +76,7 @@ function TrainerPost() {
                 <button type='submit' onClick={submitHandler} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Submit</button>
                 </div>
             </form>
-            <h4 className={`${uploadError ? "pb-6 text-lg text-red-500" : "pb-6 text-lg text-white"}`}>There was an error uploading the question.</h4>
+            
         </div>
     );
 }

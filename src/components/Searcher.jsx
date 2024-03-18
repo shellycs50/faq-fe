@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import useThrottle from "../Helpers/useThrottle";
-import Cookies from 'js-cookie'
-import DOMPurify from "dompurify";
-function Searcher({ answers, setAnswers, url, query, setQuery }) {
+// import useThrottle from "../Helpers/useThrottle";
+function Searcher({ answers, setAnswers }) {
     const [userQuery, setUserQuery] = useState("");
+    const [query, setQuery] = useState("");
+    // const throttle = useThrottle();
     // debounce
     const timeoutRef = useRef(null);
     useEffect(() => {
@@ -21,52 +21,10 @@ function basicTokenizer(text) {
     return text.toLowerCase().split(' ');
 }
 
-function listify(str_arr) {
-    let output = ''
-    str_arr.forEach((string) => {
-        output += `'${string}',`
-    })
-    return output.slice(0, output.length - 1)
-
-}
-
-async function fetchQaps() {
-    let path = `http://localhost:8000/api/${url}`;
-    // const tokens = basicTokenizer(query);
-    
-    //     path += '?searchtokens=['
-    //     path += listify(tokens)
-    //     path += ']'
-    
-    console.log(path)
-    const response = await fetch(path, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + Cookies.get('auth_key'),
-            'no-cors': 'true'
-        },
-    });
-    const data = await response.json();
-    let clean = data.data.map((item) => {
-        return {
-            ...item,
-            answer: DOMPurify.sanitize(item.answer)
-        };
-    });
-    setAnswers(clean);
-}
-const throttle = useThrottle();
-
-//main hook to fetch data
 useEffect(() => {
-    console.log(query)
-    fetchQaps();
-    Cookies.set('student_search', query, { expires: 7 });
-}, [])
-
-useEffect(() => { 
-    throttle(sortQaps, 1000)
+    // throttle(sortQaps, 1000) throttle 
+    // Cookies.set('search', query); needs fixing
+    sortQaps()
 }, [query])
 
 function sortQaps() { 
@@ -75,34 +33,37 @@ function sortQaps() {
     setAnswers(tokenSort(tokens, Qaps));
 }
 
+
 function tokenSort(queryArray, resultsArray) {
+    // count case insensitive matches of words in the query string with words in question title, (for each question answer pair object)
+    // sort desc on matches
+    // serialise back to qap without score (probably a waste of compute but OK for now)
+    // return sorted results array
+
     let rankedPosts = [];
     resultsArray.forEach(qap => {
-        console.log(qap.tokens, queryArray)
         let questionTokens = qap.tokens.toLowerCase().split(" ");
         let matches = queryArray.filter(token => questionTokens.includes(token));
-        let score = matches.length; // Simple scoring based on token matches
+        let score = matches.length;
         rankedPosts.push({
             'post': qap,
             'score': score
         });
     });
-
-    // Sort FAQ posts based on relevance scores
-    rankedPosts.sort((a, b) => b.score - a.score); // Sort in descending order of scores
-
-    rankedPosts = rankedPosts.map(post => post.post); // Remove the score from the list
+    rankedPosts.sort((a, b) => b.score - a.score);
+    rankedPosts = rankedPosts.map(post => post.post);
     return rankedPosts;
 }
 
 
 return (
-    <div className="flex flex-col pt-20 items-center font-sans text-6xl">
+    <div onSubmit={(e) => e.preventDefault()} className="flex flex-col pt-20 items-center font-sans text-6xl">
         <form className="flex flex-row justify-center border-b-4 border-b-solid border-black  text-black w-1/2 placeholder-slate-900">
             <input placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="w-full h-24 text-slate-900 p-3 focus:placeholder-no-outline" />
         </form>
     </div>
 )
 }
+
 
 export default Searcher

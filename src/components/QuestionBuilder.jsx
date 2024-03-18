@@ -7,7 +7,7 @@ function QuestionBuilder({editorRef}) {
       <Editor
         apiKey='3sl4l9qujv8w3c1ks86rbw3zoy9s2nmh2xkg4v0rb1lxf648'
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue="<p>This is the initial content of the editor.</p>"
+        initialValue="<p>Write your answer here.</p>"
         init={{
           height: 500,
           menubar: true,

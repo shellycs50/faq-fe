@@ -12,16 +12,34 @@ function PostModal({ content, setIsModalOpen }) {
         });
     }, [content]);
 
+    function scrollToTop() {
+        var currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+        if (currentPosition > 0) {
+            window.requestAnimationFrame(scrollToTop);
+            window.scrollTo(0, currentPosition - currentPosition / 8);
+        }
+
+    }
+
+    useEffect(() => {
+        scrollToTop();
+    }, [])
+
     return (
-        <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white w-90 h-90vh flex flex-col overflow-y-auto rounded-lg">
-                <div className="flex justify-end p-4 fixed top-0 right-0">
-                    <FaTimes
-                        className="text-gray-500 cursor-pointer w-6 h-6"
-                        onClick={() => setIsModalOpen(false)}
-                    />
+        <div className="flex items-center justify-center bg-black bg-opacity-50 h-screen">
+            <div>
+                <div className="bg-white flex flex-col rounded-3xl m-3">
+
+                    <div className='flex flex-row justify-end'>
+                        <FaTimes
+                            className="cursor-pointer hover:text-red-500 transition-all duration-300 ease-in-out relative right-7 top-7 text-3xl"
+                            onClick={() => setIsModalOpen(false)}
+                        />
+                    </div>
+
+                    <div className="mx-60 pb-12 rounded-lg" dangerouslySetInnerHTML={{ __html: content }}></div>
+
                 </div>
-                <div className="p-4" dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
         </div>
     );

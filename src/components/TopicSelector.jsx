@@ -8,7 +8,7 @@ function TopicSelector ({lang_id}) {
     }, [lang_id])
 
     async function fetchTopics() {  
-        const response = await fetch(`http://localhost:8000/api/topics?language_id=${lang_id}`, {
+        const response = await fetch(`https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/topics?language_id=${lang_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

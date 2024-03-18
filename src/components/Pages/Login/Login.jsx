@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Cookies from 'js-cookie'
@@ -13,9 +13,8 @@ function Login() {
   async function authenticate(event) {
     event.preventDefault();
     setIsError(false);
-    console.log('attempting to authenticate')
     try {
-      const response = await fetch("http://localhost:8000/api/login", {
+      const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,9 +27,8 @@ function Login() {
   
       const result = await response.json();
       saveCookie(result.token);
-      console.log(result.token)
       if (result.rank == 1) {
-        Cookies.set('admin', 1, { expires: 7 }); //for the scale of the project this is fine, because all admin routes are protected by auth key verification.
+        Cookies.set('admin', 1, { expires: 7 }); //for the scale of the project this is fine, and all admin routes are protected by auth key verification.
         navigate('/trainerpost')
       }
       if (result.rank == 0){
@@ -49,8 +47,19 @@ function Login() {
 
   function saveCookie(token) {
     Cookies.set('auth_key', token, { expires: 7 });
-    console.log(token)
+    
   }
+
+  useEffect(() => {
+    if (Cookies.get('auth_key')) {
+      if (Cookies.get('admin') == 1) {
+        navigate('/trainerpost')
+      }
+      if (Cookies.get('admin') == 0) {
+        navigate('/studenthome')
+      }
+    }
+  }, []);
   
 
   

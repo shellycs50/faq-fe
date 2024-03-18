@@ -12,7 +12,7 @@ function TrainerEdit() {
     });
     const [selectedLangId, setSelectedLangId] = useState(undefined);
     const [title, setTitle] = useState(""); 
-    const [uploadError, setUploadError] = useState(false);
+    const [uploadError, setUploadError] = useState("");
     const editorRef = useRef(null);
     const navigate = useNavigate();
     const { id } = useParams();
@@ -21,7 +21,7 @@ function TrainerEdit() {
    
 
     async function fetchQuestion(id) {
-        const response = await fetch(`http://localhost:8000/api/trainer/faq/${id}`, {
+        const response = await fetch(`https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/trainer/faq/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,15 +58,19 @@ function TrainerEdit() {
         const bodyObj = {
             qap_id: id,
             question: title,
-            answer: answer,
             language_id: selectedLangId,
         }
+
+        if (answer !== "<p>Write your answer here.</p>") {
+            bodyObj['answer'] = answer;
+        }
+
         if (title !== cache.title) {
             bodyObj['question_rename'] = title;
         }
         
         try {
-          const response = await fetch("http://localhost:8000/api/trainer/faq", {
+          const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/trainer/faq", {
             method: "PUT",
             headers: {
                 'Authorization': `Bearer ${Cookies.get('auth_key')}`,
@@ -76,10 +80,19 @@ function TrainerEdit() {
           });
       
           const result = await response.json();
-          console.log(result)
+          if (result.message === "Success") {
+            navigate("/success");
+        }
+        if (result.message === "Validation error") {
+            let errorstr = "";
+            for (const key in result.errors) {
+                errorstr += result.errors[key];
+            }
+            setUploadError(errorstr);   
+        }
             
         } catch (error) {
-          console.error("Error:", error);
+            setUploadError(error)
         }
       }
 
@@ -110,16 +123,18 @@ function TrainerEdit() {
                             style={{ height: "200px" }}
                         />
                     </div>
-                
+                    {uploadError != "" && <h4>{uploadError}</h4>}
                 </div>
                 <QuestionBuilder editorRef={editorRef}/>
                 </div>
                 <div className="flex flex-row justify-center gap-5">
                 <a onClick={resetToCache} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Reset All Values</a> 
                 <button type='submit' onClick={submitHandler} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Submit</button>
+                
                 </div>
+                
             </form>
-            <h4 className={`${uploadError ? "pb-6 text-lg text-red-500" : "pb-6 text-lg text-white"}`}>There was an error uploading the question.</h4>
+            
         </div>
     );
 }
