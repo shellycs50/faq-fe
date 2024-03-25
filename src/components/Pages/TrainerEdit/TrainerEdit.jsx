@@ -104,11 +104,11 @@ function TrainerEdit() {
     }
 
     return (
-        <div className="bg-slate-500 h-screenminusnav">
+        <div className="bg-slate-500 h-screen md:py-20">
             <div className="rounded-lg bg-slate-800 pb-10">
-                <h1 className="text-4xl text-center font-bold p-10 bg-slate-500 text-white rounded-lg">Quick Add</h1>
+                <h1 className="text-4xl text-center font-bold p-10 bg-slate-500 text-white rounded-lg">Quick Answer</h1>
                 <form className="mt-10">
-                    <div className="flex flex-row justify-around h-full w-full">
+                    <div className="flex flex-row justify-evenly h-full w-full">
                         <div className="px-10 flex flex-col justify-start gap-12">
                             <div className="flex flex-col gap-1">
                                 <label htmlFor='langselect' className="text-sm text-gray-500">Language</label>
@@ -128,12 +128,15 @@ function TrainerEdit() {
                             </div>
                             {uploadError != "" && <h4 className="pb-6 text-lg text-red-500">{uploadError}</h4>}
                         </div>
-                        <QuestionBuilder editorRef={editorRef} />
+                        <div className="flex flex-col">
+                            <QuestionBuilder editorRef={editorRef}/>
+                            <div className="flex flex-row justify-end gap-5 w-full">
+                                <a onClick={resetToCache} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition cursor-pointer">Reset All Values</a>
+                                <button type='submit' onClick={submitHandler} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition cursor-pointer">Submit</button>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex flex-row justify-center gap-5">
-                        <a onClick={resetToCache} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Reset All Values</a>
-                        <button type='submit' onClick={submitHandler} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Submit</button>
-                    </div>
+
                 </form>
             </div>
         </div>

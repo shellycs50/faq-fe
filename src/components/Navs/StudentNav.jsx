@@ -6,11 +6,13 @@ const StudentNav = ({ LogOut }) => {
     const [navHeight, setnavHeight] = useState("h-32");
     const [navColor, setnavColor] = useState("bg-transparent");
     const [fontColor, setFontColor] = useState("text-black");
+    const [fontSize, setFontSize] = useState("text-2xl");
 
     const listenScrollEvent = () => {
         window.scrollY > 20 ? setnavColor("from-black to-juicypastel  bg-opacity-80") : setnavColor("bg-transparent");
         window.scrollY > 20 ? setFontColor("text-offwhite") : setFontColor("text-black");
         window.scrollY > 20 ? setnavHeight("h-16") : setnavHeight("h-32");
+        window.scrollY > 20 ? setFontSize("text-xl") : setFontSize("text-2xl");
         };
     
         useEffect(() => {
@@ -22,15 +24,13 @@ const StudentNav = ({ LogOut }) => {
     
 
     return (
-        <div className={`${navHeight} ${navColor} ${fontColor} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center text-2xl bg-opacity-20`}>
+        <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-500 flex flex-col justify-center bg-opacity-20`}>
         <nav>
-      
-
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="/studenthome" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <Link to="/studenthome" className="flex items-center space-x-3 rtl:space-x-reverse">
                     
                     <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">FAQ</span>
-                </a>
+                </Link>
                 <button
                     data-collapse-toggle="navbar-default"
                     type="button"
@@ -58,8 +58,8 @@ const StudentNav = ({ LogOut }) => {
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 bg-none">
                         <li>
-                            <a
-                                href="/studentpost"
+                            <Link
+                                to="/studentpost"
                                 className={`block py-2 px-3 ${
                                     location.pathname === '/studentpost'
                                         ? ' bg-blue-700 rounded md:bg-transparent md:p-0 underline'
@@ -68,11 +68,11 @@ const StudentNav = ({ LogOut }) => {
                                 aria-current="page"
                             >
                                 Ask Question
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="/studenthome"
+                            <Link
+                                to="/studenthome"
                                 className={`block py-2 px-3 ${
                                     location.pathname === '/studenthome'
                                         ? 'underline bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white '
@@ -80,7 +80,7 @@ const StudentNav = ({ LogOut }) => {
                                 }`}
                             >
                                 View Archive
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a

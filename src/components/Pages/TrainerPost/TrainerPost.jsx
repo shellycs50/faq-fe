@@ -50,9 +50,9 @@ function TrainerPost() {
     }
 
     return (
-        <div className="bg-slate-500 h-screenminusnav">
+        <div className="bg-slate-500 h-screen md:py-24">
             <div className="rounded-lg bg-slate-800 pb-10">
-                <h1 className="text-4xl text-center font-bold p-10 bg-slate-500 text-white rounded-lg">Add a Question and Answer in one go.</h1>
+                <h1 className="text-4xl text-center font-bold p-10 bg-slate-500 text-white">Add a Question and Answer in one go.</h1>
                 <form className="mt-10">
                     <div className="flex flex-row justify-around h-full w-full">
                         <div className="px-10 flex flex-col justify-start gap-12">

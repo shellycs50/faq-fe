@@ -56,10 +56,10 @@ function TrainerArchive() {
     return (
         <div>
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : (
-                <>
+                <div className="py-16">
                     <Searcher setAnswers={setAnswers} setQuery={setQuery} query={query} answers={answers}/>
                     <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={false}/>
-                </>
+                </div>
             )}
         </div>
     )
