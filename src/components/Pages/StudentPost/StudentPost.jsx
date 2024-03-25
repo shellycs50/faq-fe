@@ -2,7 +2,7 @@ import LanguageSelect from "../LanguageSelect";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useEffect, useState, useRef } from "react";
-
+import { QueryClient } from "@tanstack/react-query";
 
 function StudentPost() {
     const [selectedLangId, setSelectedLangId] = useState(0);
@@ -11,7 +11,7 @@ function StudentPost() {
     const [errorMessage, setErrorMessage] = useState('');
     const editorRef = useRef(null);
     const navigate = useNavigate();
-
+    const queryClient = new QueryClient();
 
     async function submitHandler(event) {
         event.preventDefault();
@@ -38,6 +38,7 @@ function StudentPost() {
                 setErrorMessage(newstr);
             }
             if (response.status === 201) {
+                queryClient.invalidateQueries('studentqaps');
                 navigate("/success");
             }
         } catch (error) {
@@ -50,8 +51,9 @@ function StudentPost() {
     }
 
     return (
-        <div className="flex flex-col items-center pt-5">
-            <h2 className="text-3xl">Submit a Question</h2>
+        <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 min-h-screen">
+            <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-tealywheely via-juicypastel to-tealywheely p-20 rounded-xl">
+            <h2 className="text-3xl font-semibold">Submit a Question</h2>
             <div className="grid grid-cols-3 gap-4 mt-8 max-h-screen">
                 <div>
                 <LanguageSelect
@@ -92,6 +94,7 @@ function StudentPost() {
                 </div>
                 
                 
+            </div>
             </div>
         </div>
     );

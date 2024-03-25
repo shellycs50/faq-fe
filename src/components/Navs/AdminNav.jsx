@@ -5,42 +5,86 @@ const AdminNav = ({ LogOut }) => {
     const location = useLocation();
 
     return (
-        <nav className="my-2 text-xl">
-            <ul className="flex justify-around">
-                <li className={`p-2 ${location.pathname === '/trainerpost' ? 'text-blue-500 shadow-lg rounded-full p-4' : 'text-blue-700 p-4'}`}>
-                    <Link
-                        to="/trainerpost"
-                        className="hover:text-blue-500 transition duration-300 ease-in-out transform hover:scale-110"
+        <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed">
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <Link to="/studenthome" className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FAQ</span>
+                </Link>
+                <button
+                    data-collapse-toggle="navbar-default"
+                    type="button"
+                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="navbar-default"
+                    aria-expanded="false"
+                >
+                    <span className="sr-only">Open main menu</span>
+                    <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 17 14"
                     >
-                        Make a new post
-                    </Link>
-                </li>
-                <li className={`p-2 ${location.pathname === '/trainerarchive' ? 'text-blue-500 shadow-lg rounded-full p-4' : 'text-blue-700 p-4'}`}>
-                    <Link
-                        to="/trainerarchive"
-                        className="hover:text-blue-500 transition duration-300 ease-in-out transform hover:scale-110"
-                    >
-                        Unanswered Questions
-                    </Link>
-                </li>
-                <li className={`p-2 ${location.pathname === '/studenthome' ? 'text-blue-500 shadow-lg rounded-full p-4' : 'text-blue-700 p-4'}`}>
-                    <Link
-                        to="/studenthome"
-                        className="hover:text-blue-500 transition duration-300 ease-in-out transform hover:scale-110"
-                    >
-                        Student Archive
-                    </Link>
-                </li>
-                <li className="text-blue-700 hover:text-blue-500 p-4 cursor-pointer">
-                    <a
-                        onClick={LogOut}
-
-                    >
-                        Log out
-                    </a>
-                </li>
-            </ul >
-        </nav >
+                        <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M1 1h15M1 7h15M1 13h15"
+                        />
+                    </svg>
+                </button>
+                <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                            <Link
+                                to="/trainerpost"
+                                className={`block py-2 px-3 ${
+                                    location.pathname === '/trainerpost'
+                                        ? 'text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500'
+                                        : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                }`}
+                            >
+                                Make a new post
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/trainerarchive"
+                                className={`block py-2 px-3 ${
+                                    location.pathname === '/trainerarchive'
+                                        ? 'text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500'
+                                        : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                }`}
+                            >
+                                Unanswered Questions
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/studenthome"
+                                className={`block py-2 px-3 ${
+                                    location.pathname === '/studenthome'
+                                        ? 'text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500'
+                                        : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                }`}
+                            >
+                                Student Archive
+                            </Link>
+                        </li>
+                        <li>
+                            <a
+                                onClick={LogOut}
+                                className="cursor-pointer block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                            >
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     );
 };
 

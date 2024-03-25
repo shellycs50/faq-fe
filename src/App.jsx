@@ -52,6 +52,7 @@ function App() {
       {isAdmin == 0 && <StudentNav LogOut={LogOut} />}
 
       <Routes>
+        
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -66,7 +67,7 @@ function App() {
       </Routes>
     
     </BrowserRouter>
-    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+    <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

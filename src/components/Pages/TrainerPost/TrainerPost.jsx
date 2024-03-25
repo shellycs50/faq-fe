@@ -2,6 +2,7 @@ import LanguageSelect from "../LanguageSelect";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useEffect, useState, useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
 import QuestionBuilder from "../../QuestionBuilder";
 
 function TrainerPost() {
@@ -31,7 +32,10 @@ function TrainerPost() {
 
             const result = await response.json();
             if (result.message === "Success") {
+                
                 navigate("/success");
+                useQuery.invalidateQueries('trainerqaps');
+                useQuery.invalidateQueries('studentqaps');
             }
             if (result.message === "Validation error") {
                 let errorstr = "";

@@ -1,37 +1,100 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-
+import { Link, useLocation, } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 const StudentNav = ({ LogOut }) => {
     const location = useLocation();
+    const [navHeight, setnavHeight] = useState("h-32");
+    const [navColor, setnavColor] = useState("bg-transparent");
+    const [fontColor, setFontColor] = useState("text-black");
+
+    const listenScrollEvent = () => {
+        window.scrollY > 20 ? setnavColor("from-black to-juicypastel  bg-opacity-80") : setnavColor("bg-transparent");
+        window.scrollY > 20 ? setFontColor("text-offwhite") : setFontColor("text-black");
+        window.scrollY > 20 ? setnavHeight("h-16") : setnavHeight("h-32");
+        };
+    
+        useEffect(() => {
+            window.addEventListener("scroll", listenScrollEvent);
+            return () => {
+              window.removeEventListener("scroll", listenScrollEvent);
+            };
+            }, []);
+    
 
     return (
-        <nav className="my-2 text-xl">
-            <ul className="flex justify-around">
-                <li className={`p-2 ${location.pathname === '/studentpost' ? 'text-blue-500 shadow-lg rounded-full p-4' : 'text-blue-700 p-4'}`}>
-                    <Link
-                        to="/studentpost"
-                        className="hover:text-blue-500 transition duration-300 ease-in-out transform hover:scale-110"
+        <div className={`${navHeight} ${navColor} ${fontColor} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center text-2xl bg-opacity-20`}>
+        <nav>
+      
+
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="/studenthome" className="flex items-center space-x-3 rtl:space-x-reverse">
+                    
+                    <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">FAQ</span>
+                </a>
+                <button
+                    data-collapse-toggle="navbar-default"
+                    type="button"
+                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="navbar-default"
+                    aria-expanded="false"
+                >
+                    <span className="sr-only">Open main menu</span>
+                    <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 17 14"
                     >
-                        Ask Question
-                    </Link>
-                </li>
-                <li className={`p-2 ${location.pathname === '/studenthome' ? 'text-blue-500 shadow-lg rounded-full p-4' : 'text-blue-700 p-4'}`}>
-                    <Link
-                        to="/studenthome"
-                        className="hover:text-blue-500 transition duration-300 ease-in-out transform hover:scale-110"
-                    >
-                        View Archive
-                    </Link>
-                </li>
-                <li className="text-blue-700 hover:text-blue-500 p-4 cursor-pointer">
-                    <a
-                        onClick={LogOut}                         
-                    >
-                        Logout
-                    </a>
-                </li>
-            </ul>
+                        <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M1 1h15M1 7h15M1 13h15"
+                        />
+                    </svg>
+                </button>
+                <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 bg-none">
+                        <li>
+                            <a
+                                href="/studentpost"
+                                className={`block py-2 px-3 ${
+                                    location.pathname === '/studentpost'
+                                        ? ' bg-blue-700 rounded md:bg-transparent md:p-0 underline'
+                                        : ' rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0   dark:hover:bg-gray-700  md:dark:hover:bg-transparent'
+                                }`}
+                                aria-current="page"
+                            >
+                                Ask Question
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="/studenthome"
+                                className={`block py-2 px-3 ${
+                                    location.pathname === '/studenthome'
+                                        ? 'underline bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white '
+                                        : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                }`}
+                            >
+                                View Archive
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                onClick={LogOut}
+                                className="cursor-pointer block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                            >
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
+        </div>
     );
 }
 

@@ -11,11 +11,13 @@ function StudentHome() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState("");
     
-const { isLoading, error, data: queryData } = useQuery({
+const { isLoading, error, data: queryData, refetch } = useQuery({
     queryFn: () => fetchQaps(),
     queryKey: ['studentqaps'],
-    staleTime: 1000000,
+    staleTime: 60000,
 })
+
+
 
 useEffect(() => {
     if (queryData) {
@@ -24,7 +26,7 @@ useEffect(() => {
 }, [queryData])
 
 async function fetchQaps() {
-    console.log('attempting to fetch')
+    console.log('fetching')
     let path = `https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/student/faq`;
     const response = await fetch(path, {
         method: 'GET',
@@ -45,18 +47,23 @@ async function fetchQaps() {
 }
 
 
+
     function modalOpen(id) {
         setIsModalOpen(true);
         setModalContent(answers[id].answer);
     }
     return (
-        <div>
-            {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : (
-                <>
+        <div className={"bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 "} >
+            {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : 
+                
+                true == false ? <div className="text-white h-screen">Loading...</div> : (
+                    
+                <div className="py-16">
                     <Searcher setAnswers={setAnswers} answers={answers}/>
                     <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={true}/>
-                </>
-            )}
+                    </div>
+                )}
+                
         </div>
     )
 }

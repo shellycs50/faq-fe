@@ -81,6 +81,8 @@ function TrainerEdit() {
 
             const result = await response.json();
             if (result.message === "Success") {
+                useQuery.invalidateQueries('trainerqaps');
+                useQuery.invalidateQueries('studentqaps');
                 navigate("/success");
             }
             if (result.message === "Validation error") {

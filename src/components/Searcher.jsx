@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+
 // import useThrottle from "../Helpers/useThrottle";
 function Searcher({ answers, setAnswers }) {
     const [userQuery, setUserQuery] = useState("");
@@ -58,8 +59,10 @@ function tokenSort(queryArray, resultsArray) {
 
 return (
     <div onSubmit={(e) => e.preventDefault()} className="flex flex-col pt-20 items-center font-sans text-6xl">
-        <form className="flex flex-row justify-center border-b-4 border-b-solid border-black  text-black w-1/2 placeholder-slate-900">
-            <input placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="w-full h-24 text-slate-900 p-3 focus:placeholder-no-outline" />
+        <form className="flex flex-row justify-center p-0 border-b-solid border-black  text-black w-1/2 placeholder-slate-900">
+            <input placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="shadow-2xl w-full h-24 text-slate-900 p-14 border-2 rounded-full outline-none bg-slate-200 focus:bg-white transition-all duration-500 ease-in-out" />
+            
+
         </form>
     </div>
 )
