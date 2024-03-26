@@ -17,6 +17,7 @@ module.exports = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        'max-md': { 'max': '168px' },
       },
     },
     extend: {
@@ -25,7 +26,7 @@ module.exports = {
       },
       fontFamily: {
         'playfair': ['Playfair', 'serif'],
-        
+
       },
       colors: {
         border: "hsl(var(--border))",

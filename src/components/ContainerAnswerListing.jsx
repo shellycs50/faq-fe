@@ -17,12 +17,12 @@ function ContainerAnswerListing({ modalOpen, answers, isAnswer, shouldFilter }) 
 
     return (
         <div className="flex w-full flex-row justify-center">
-            <div className="gap-6 w-full flex flex-row flex-wrap justify-center lg:px-40 lg:pt-20">
+            <div className="gap-6 w-full flex flex-col lg:flex-row lg:flex-wrap justify-center items-center lg:px-40 pt-10 md:pt-20">
                 {isAnswer ? (
                     answers.map((item, i) => (
                             shouldFilter && item.score > 0 || !shouldFilter ? (
-                                <div key={i}>
-                                <motion.div key={i} initial={{ opacity: 0 }} animate={controls} className="w-96 h-36" whileHover={{ y: -3, scale: 1.01, transition: { duration: .3, delay: .2 } }}>
+                                <div key={i} className="w-3/4 md:w-96 md:h-36">
+                                <motion.div key={i} initial={{ opacity: 0 }} animate={controls} className="" whileHover={{ y: -3, scale: 1.01, transition: { duration: .3, delay: .2 } }}>
                                     <NewAnswerListing key={i} question={item.question} answer={item.answer} answerer_id={item.answerer_id} language={item.language} id={i} modalOpen={modalOpen} />
                                 </motion.div>
                                 </div>

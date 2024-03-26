@@ -67,7 +67,7 @@ function App() {
       </Routes>
     
     </BrowserRouter>
-    <ReactQueryDevtools initialIsOpen={false} />
+    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }

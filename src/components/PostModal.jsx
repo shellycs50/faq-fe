@@ -54,7 +54,7 @@ function PostModal({ content, setIsModalOpen }) {
 
     return (
         
-        <div className=' flex flex-col min-h-screen min-w-full justify-center items-center bg-gray-200 pt-40 -z-10'>
+        <div className=' flex flex-col min-h-screen min-w-full justify-center items-center bg-gray-200 pt-20 md:pt-32 -z-10'>
             <div className=''>
                 <div className="flex flex-col justify-center items-center rounded-3xl p-10 h-full w-full relative" ref={modalContentRef}>
                 <AnimatePresence >
@@ -65,7 +65,7 @@ function PostModal({ content, setIsModalOpen }) {
                                 onClick={() => setIsModalOpen(false)}
                             />
                         </motion.div>
-                        <div className='justify-self-center flex flex-col justify-center text-xl relative'>
+                        <div className='justify-self-center flex flex-col justify-center md:text-xl relative w-screen md:w-auto'>
                             <div className="p-5 pt-30 overflow-y-auto" dangerouslySetInnerHTML={{ __html: content }}></div>
                         </div>
 

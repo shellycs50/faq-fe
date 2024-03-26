@@ -54,9 +54,9 @@ function StudentPost() {
     return (
         <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 min-h-screen">
             <AnimatePresence>
-            <motion.div initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0}} exit={{opacity: 0, y: 100}} className="flex flex-col items-center justify-center bg-gradient-to-tr from-tealywheely via-juicypastel to-tealywheely p-20 rounded-xl">
+            <motion.div initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0}} exit={{opacity: 0, y: 100}} className="flex flex-col items-center justify-center bg-gradient-to-tr from-tealywheely via-juicypastel to-tealywheely p-20 pt-32 md:pt-20 rounded-xl h-3/4 w-full">
             <h2 className="text-3xl font-semibold">Submit a Question</h2>
-            <div className="grid grid-cols-3 gap-4 mt-8 max-h-screen">
+            <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-3 gap-4 mt-8">
                 <div>
                 <LanguageSelect
                     id="langselect"
