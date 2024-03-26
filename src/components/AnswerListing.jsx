@@ -11,7 +11,7 @@ function AnswerListing({question, language, id, modalOpen,}) {
             
             
         <h1 className="text-2xl font-sans w-2/3 my-3 py-2 font-medium ">{question}</h1>
-        <p className="group border rounded-lg my-3 p-2 overflow-hidden ">{language}</p>
+        <div className='flex flex-col justify-center'><p className="group border rounded-lg my-3 p-2 overflow-hidden ">{language}</p></div>
         <OpenInNewIcon className="m-0 p-1 self-start group-hover:text-offwhite transition-all duration-500 ease-in-out"/>
 
         </a>
