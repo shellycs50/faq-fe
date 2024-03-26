@@ -1,6 +1,6 @@
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useEffect, useState } from 'react';
-function AnswerListing({question, language, id, modalOpen,}) {
+function AnswerListing({question, language, id, modalOpen, answer}) {
     const [isEvenIndex, setIsEvenIndex] = useState(false)
     useEffect(() => {
         id % 2 === 0 ? setIsEvenIndex(true) : setIsEvenIndex(false)

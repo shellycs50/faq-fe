@@ -1,10 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
+import { Switch } from "../../components/ui/switch";
 // import useThrottle from "../Helpers/useThrottle";
-function Searcher({ answers, setAnswers }) {
+function Searcher({ answers, setAnswers, setShouldFilter }) {
     const [userQuery, setUserQuery] = useState("");
     const [query, setQuery] = useState("");
     const [prevTokens, setPrevTokens] = useState([]);
+    const [prevToggle, setPrevToggle] = useState(false);
+    const [toggle, setToggle] = useState(false);
     // const throttle = useThrottle();
     // debounce
     const timeoutRef = useRef(null);
@@ -26,14 +29,17 @@ function basicTokenizer(text) {
 useEffect(() => {
     // throttle(sortQaps, 1000) throttle 
     // Cookies.set('search', query); needs fixing
+    console.log("sorting")
     sortQaps()
-}, [query])
+}, [query, toggle])
 
 function sortQaps() { 
     const Qaps = answers; 
     const tokens = basicTokenizer(query);
     const arraysEqual = tokens.length === prevTokens.length && tokens.every((value, index) => value === prevTokens[index]);
-    if (arraysEqual) return;
+    if (arraysEqual && toggle == prevToggle) return;
+    setShouldFilter(toggle)
+    tokens[0] == "" && setShouldFilter(false);
     setAnswers(tokenSort(tokens, Qaps));
     setPrevTokens(tokens);
 }
@@ -56,17 +62,28 @@ function tokenSort(queryArray, resultsArray) {
         });
     });
     rankedPosts.sort((a, b) => b.score - a.score);
-    rankedPosts = rankedPosts.map(post => post.post);
+    rankedPosts = rankedPosts.map(function (item) { 
+        let listing = item.post
+        listing.score = item.score
+        return listing
+    });
     return rankedPosts;
 }
 
+const handleToggleChange = (event) => {
+    setPrevToggle(toggle);
+    setToggle(event);
+  };
+
 
 return (
-    <div onSubmit={(e) => e.preventDefault()} className="flex flex-col pt-20 items-center font-sans text-6xl -z-10">
-        <form className="flex flex-row justify-center p-0 border-b-solid border-black  text-black w-1/2 placeholder-slate-900">
-            <motion.input initial={{scale: 0.98}} whileFocus={{scale: 1, transition: { duration: 0.01}}} placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="shadow-2xl w-full h-24 text-slate-900 p-14 border-2 rounded-full outline-none bg-slate-200 focus:bg-white transition-all duration-500 ease-in-out" />
-            
-
+    <div onSubmit={(e) => e.preventDefault()} className="flex flex-row pt-20 justify-center font-sans lg:text-6xl -z-10">
+        <form className="flex flex-row justify-evenly p-0 border-b-solid border-black  text-black lg:w-1/2 placeholder-slate-900">
+            <motion.input initial={{scale: 0.98}} whileFocus={{scale: 1, transition: { duration: 0.01}}} placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="text-left placeholder-muted-foreground shadow-2xl w-full lg:h-24 text-slate-900 p-6 lg:p-14 border-2 rounded-full outline-none bg-slate-200 focus:bg-white transition-all duration-500 ease-in-out" />
+            <div className="self-center flex flex-col items-center w-20 gap-2 h-full justify-center">
+                <p className="text-sm text-center text-slate-600 font-semibold">Show Only Matches</p>
+                <Switch className="self-center" onCheckedChange={handleToggleChange} data-state="checked" />
+            </div>
         </form>
     </div>
 )
