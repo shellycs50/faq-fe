@@ -1,8 +1,9 @@
-import LanguageSelect from "../LanguageSelect";
+import LanguageSelect from "../../languageSelectMenu/LanguageSelect";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useEffect, useState, useRef } from "react";
 import { QueryClient } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion";
 
 function StudentPost() {
     const [selectedLangId, setSelectedLangId] = useState(0);
@@ -52,7 +53,8 @@ function StudentPost() {
 
     return (
         <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 min-h-screen">
-            <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-tealywheely via-juicypastel to-tealywheely p-20 rounded-xl">
+            <AnimatePresence>
+            <motion.div initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0}} exit={{opacity: 0, y: 100}} className="flex flex-col items-center justify-center bg-gradient-to-tr from-tealywheely via-juicypastel to-tealywheely p-20 rounded-xl">
             <h2 className="text-3xl font-semibold">Submit a Question</h2>
             <div className="grid grid-cols-3 gap-4 mt-8 max-h-screen">
                 <div>
@@ -95,7 +97,8 @@ function StudentPost() {
                 
                 
             </div>
-            </div>
+            </motion.div>
+            </AnimatePresence>
         </div>
     );
 }

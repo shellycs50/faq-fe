@@ -22,7 +22,7 @@ function App() {
   const queryClient = new QueryClient();
 
   function LogOut() {
-    console.log('attempting to logout')
+    
     // const navigate = useNavigate();
     Cookies.remove('auth_key');
     Cookies.remove('admin');
@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     let NavbarHack = setInterval(() => {
-      console.log('checking for admin')
+      
       if (Cookies.get('auth_key') && Cookies.get('admin')) {
         setIsAdmin(Cookies.get('admin'))
         clearInterval(NavbarHack);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Cookies from "js-cookie";
+import LanguageSelectPlaceholder from "./LanguageSelectPlaceholder";
 function LanguageSelect({selectstyles = '', optionstyles = '', selectedLangId, setSelectedLangId}) {
     const [langs, setLangs] = useState([]);
     useEffect(() => {
@@ -13,22 +14,19 @@ function LanguageSelect({selectstyles = '', optionstyles = '', selectedLangId, s
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + Cookies.get('auth_key')
             },
-        }
-        );
+        });
         const result = await response.json();
-        setLangs(result.data)
+        setLangs(result.data);
     }
-    // setInterval(() => {
-    //     console.log({selectedLangId})
-    // }, 1000)
+
     return (
+        langs.length < 1 ? <LanguageSelectPlaceholder selectstyles={selectstyles} optionstyles={optionstyles}/> :
         <select className={selectstyles} onChange={(e) => setSelectedLangId(e.target.value)} value={selectedLangId}>
             {langs.map((language) => (
                 <option className={optionstyles} key={language.id} value={language.id}>{language.name}</option>
             ))}
         </select>
-    )
-    // selectedLangId={selectedLangId} setSelectedLangId={setSelectedLangId} 
-}
+    );
+            }
 
 export default LanguageSelect

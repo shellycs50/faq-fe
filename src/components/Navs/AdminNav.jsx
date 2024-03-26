@@ -21,7 +21,7 @@ const AdminNav = ({ LogOut }) => {
             }, []);
 
             return (
-                <div className={`${navHeight} ${navColor} ${fontColor} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center text-2xl bg-opacity-20`}>
+                <div className={`${navHeight} ${navColor} ${fontColor} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center text-2xl bg-opacity-20 z-10`}>
                 <nav>
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                         <Link to="/trainerarchive" className="flex items-center space-x-3 rtl:space-x-reverse">

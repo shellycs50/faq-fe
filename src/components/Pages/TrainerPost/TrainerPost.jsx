@@ -1,4 +1,4 @@
-import LanguageSelect from "../LanguageSelect";
+import LanguageSelect from "../../languageSelectMenu/LanguageSelect";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useEffect, useState, useRef } from "react";

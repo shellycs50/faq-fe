@@ -5,7 +5,8 @@ import PostModal from "../../PostModal";
 import { useQuery } from "@tanstack/react-query";
 import Cookies from 'js-cookie'
 import DOMPurify from "dompurify";
-
+import { motion, AnimatePresence } from 'framer-motion'
+ 
 function StudentHome() {
     const [answers, setAnswers] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,7 +27,7 @@ useEffect(() => {
 }, [queryData])
 
 async function fetchQaps() {
-    console.log('fetching')
+    
     let path = `https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/student/faq`;
     const response = await fetch(path, {
         method: 'GET',
@@ -53,16 +54,20 @@ async function fetchQaps() {
         setModalContent(answers[id].answer);
     }
     return (
-        <div className={"bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 "} >
+        <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 " >
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : 
                 
-                true == false ? <div className="text-white h-screen">Loading...</div> : (
+                
                     
-                <div className="py-16">
+                <div className="py-16 min-h-screen">
                     <Searcher setAnswers={setAnswers} answers={answers}/>
+                    <AnimatePresence>
+                    <motion.div key="answer-container" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0}} exit={{opacity: 0, y: 100}}>
                     <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={true}/>
+                    </motion.div>
+                    </AnimatePresence>
                     </div>
-                )}
+                }
                 
         </div>
     )

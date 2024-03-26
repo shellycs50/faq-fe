@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-
+import { motion } from "framer-motion";
 // import useThrottle from "../Helpers/useThrottle";
 function Searcher({ answers, setAnswers }) {
     const [userQuery, setUserQuery] = useState("");
     const [query, setQuery] = useState("");
+    const [prevTokens, setPrevTokens] = useState([]);
     // const throttle = useThrottle();
     // debounce
     const timeoutRef = useRef(null);
@@ -31,7 +32,10 @@ useEffect(() => {
 function sortQaps() { 
     const Qaps = answers; 
     const tokens = basicTokenizer(query);
+    const arraysEqual = tokens.length === prevTokens.length && tokens.every((value, index) => value === prevTokens[index]);
+    if (arraysEqual) return;
     setAnswers(tokenSort(tokens, Qaps));
+    setPrevTokens(tokens);
 }
 
 
@@ -58,9 +62,9 @@ function tokenSort(queryArray, resultsArray) {
 
 
 return (
-    <div onSubmit={(e) => e.preventDefault()} className="flex flex-col pt-20 items-center font-sans text-6xl">
+    <div onSubmit={(e) => e.preventDefault()} className="flex flex-col pt-20 items-center font-sans text-6xl -z-10">
         <form className="flex flex-row justify-center p-0 border-b-solid border-black  text-black w-1/2 placeholder-slate-900">
-            <input placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="shadow-2xl w-full h-24 text-slate-900 p-14 border-2 rounded-full outline-none bg-slate-200 focus:bg-white transition-all duration-500 ease-in-out" />
+            <motion.input initial={{scale: 0.98}} whileFocus={{scale: 1, transition: { duration: 0.01}}} placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="shadow-2xl w-full h-24 text-slate-900 p-14 border-2 rounded-full outline-none bg-slate-200 focus:bg-white transition-all duration-500 ease-in-out" />
             
 
         </form>

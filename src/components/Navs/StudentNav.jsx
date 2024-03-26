@@ -9,7 +9,7 @@ const StudentNav = ({ LogOut }) => {
     const [fontSize, setFontSize] = useState("text-2xl");
 
     const listenScrollEvent = () => {
-        window.scrollY > 20 ? setnavColor("from-black to-juicypastel  bg-opacity-80") : setnavColor("bg-transparent");
+        window.scrollY > 20 ? setnavColor("from-juicypastel to-black") : setnavColor("bg-transparent");
         window.scrollY > 20 ? setFontColor("text-offwhite") : setFontColor("text-black");
         window.scrollY > 20 ? setnavHeight("h-16") : setnavHeight("h-32");
         window.scrollY > 20 ? setFontSize("text-xl") : setFontSize("text-2xl");
@@ -24,7 +24,7 @@ const StudentNav = ({ LogOut }) => {
     
 
     return (
-        <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-500 flex flex-col justify-center bg-opacity-20`}>
+        <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center z-10`}>
         <nav>
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/studenthome" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -38,22 +38,7 @@ const StudentNav = ({ LogOut }) => {
                     aria-controls="navbar-default"
                     aria-expanded="false"
                 >
-                    <span className="sr-only">Open main menu</span>
-                    <svg
-                        className="w-5 h-5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 17 14"
-                    >
-                        <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M1 1h15M1 7h15M1 13h15"
-                        />
-                    </svg>
+                    
                 </button>
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 bg-none">
@@ -65,7 +50,7 @@ const StudentNav = ({ LogOut }) => {
                                         ? ' bg-blue-700 rounded md:bg-transparent md:p-0 underline'
                                         : ' rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0   dark:hover:bg-gray-700  md:dark:hover:bg-transparent'
                                 }`}
-                                aria-current="page"
+                               
                             >
                                 Ask Question
                             </Link>
