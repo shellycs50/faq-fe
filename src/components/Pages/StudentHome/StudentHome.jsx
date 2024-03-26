@@ -13,7 +13,7 @@ function StudentHome() {
     const [modalContent, setModalContent] = useState("");
     const [shouldFilter, setShouldFilter] = useState(false);
     const [userQuery, setUserQuery] = useState("");
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(true);
     const { isLoading, error, data: queryData, refetch } = useQuery({
         queryFn: () => fetchQaps(),
         queryKey: ['studentqaps'],
