@@ -6,7 +6,7 @@ function QuestionListing({ question, id, modalOpen, }) {
         id % 2 === 0 ? setIsEvenIndex(true) : setIsEvenIndex(false)
     }, [id])
     return (
-        <a onClick={() => {modalOpen(id)}} className={`group transition-all duration-500 ease-in-out flex flex-row w-9/12 justify-between cursor-pointer border-b-4 border p-3 rounded-xl bg-opacity-10 h-24
+        <a onClick={() => {modalOpen(id)}} className={`group transition-all duration-500 ease-in-out flex flex-row w-9/12 justify-between cursor-pointer border-b-4 border p-3 rounded-xl bg-opacity-10 lg:h-24
         ${isEvenIndex ? "bg-gradient-to-tr from-offwhite via-neutral-400 to-offwhite hover:from-offwhite hover:via-neutral-400 hover:to-baseblue" : "bg-gradient-to-tr from-neutral-400 via-offwhite to-neutral-400 hover:from-neutral-400 hover:via-offwhite hover:to-baseblue"}` }>
             
             

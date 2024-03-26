@@ -19,7 +19,7 @@ function ContainerAnswerListing({ modalOpen, answers, isAnswer }) {
             {isAnswer ? (
                 answers.map((item, i) => (
                     <div className="w-2/3">
-                    <motion.div key={i} initial={{ opacity: 0 }} animate={controls} className="w-full flex justify-center" whileHover={{x: 5 , transition: { duration: .5 },}}>
+                    <motion.div key={i} initial={{ opacity: 0 }} animate={controls} className="w-full flex justify-center" whileHover={{x: 5 , transition: { duration: .3, delay: .2 }}}>
                         <AnswerListing key={i} question={item.question} answer={item.answer} answerer_id={item.answerer_id} language={item.language} id={i} modalOpen={modalOpen} />
                     </motion.div>
                     </div>
