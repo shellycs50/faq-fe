@@ -12,6 +12,8 @@ function StudentHome() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState("");
     const [shouldFilter, setShouldFilter] = useState(false);
+    const [userQuery, setUserQuery] = useState("");
+    const [toggle, setToggle] = useState(false);
     const { isLoading, error, data: queryData, refetch } = useQuery({
         queryFn: () => fetchQaps(),
         queryKey: ['studentqaps'],
@@ -56,7 +58,7 @@ function StudentHome() {
         <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 " >
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> :
                 <div className="py-16 min-h-screen">
-                    <Searcher setAnswers={setAnswers} answers={answers} setShouldFilter={setShouldFilter} />
+                    <Searcher setAnswers={setAnswers} answers={answers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery}/>
                     <AnimatePresence>
                         <motion.div key="answer-container" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }}>
                             <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={true} shouldFilter={shouldFilter} />

@@ -2,12 +2,11 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Switch } from "../../components/ui/switch";
 // import useThrottle from "../Helpers/useThrottle";
-function Searcher({ answers, setAnswers, setShouldFilter }) {
-    const [userQuery, setUserQuery] = useState("");
+function Searcher({ answers, setAnswers, setShouldFilter, toggle, setToggle, userQuery, setUserQuery }) {
+    
     const [query, setQuery] = useState("");
     const [prevTokens, setPrevTokens] = useState([]);
     const [prevToggle, setPrevToggle] = useState(false);
-    const [toggle, setToggle] = useState(false);
     // const throttle = useThrottle();
     // debounce
     const timeoutRef = useRef(null);
@@ -74,6 +73,12 @@ const handleToggleChange = (event) => {
     setToggle(event);
   };
 
+  useEffect(() => {
+    setInterval(() => {
+        console.log(toggle)
+    }, 1000)
+    }, [toggle])
+
 
 return (
     <div onSubmit={(e) => e.preventDefault()} className="flex flex-row pt-20 justify-center font-sans lg:text-6xl -z-10">
@@ -81,7 +86,7 @@ return (
             <motion.input initial={{scale: 0.98}} whileFocus={{scale: 1, transition: { duration: 0.01}}} placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="text-left placeholder-muted-foreground shadow-2xl w-full lg:h-24 text-slate-900 p-6 lg:p-14 border-2 rounded-full outline-none bg-slate-200 focus:bg-white transition-all duration-500 ease-in-out" />
             <div className="self-center flex flex-row md:flex-col md:items-center w-20 gap-2 h-full justify-center">
                 <p className="order-first md:order-none text-sm text-center text-slate-600 font-semibold">Show Only Matches</p>
-                <Switch className="self-center" onCheckedChange={handleToggleChange} data-state="checked" />
+                <Switch className="self-center" onCheckedChange={handleToggleChange} checked={(() => { return toggle })()}  data-state="checked" />
             </div>
         </form>
     </div>
