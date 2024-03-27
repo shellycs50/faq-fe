@@ -14,7 +14,6 @@ function ContainerAnswerListing({ modalOpen, answers, isAnswer, shouldFilter }) 
         })()
     }, [answers])
 
-
     return (
         <div className="flex w-full flex-row justify-center">
             <div className="gap-6 w-full flex flex-col lg:flex-row lg:flex-wrap justify-center items-center lg:px-40 pt-10 md:pt-20">
@@ -35,6 +34,8 @@ function ContainerAnswerListing({ modalOpen, answers, isAnswer, shouldFilter }) 
                         <QuestionListing key={i} question={item.question} answer={item.answer} answerer_id={item.answerer_id} language={item.language} id={item.id} modalOpen={modalOpen} />
                     ))
                 )}
+
+            {/* wasteful of compute */}
                 {answers.length > 0 && shouldFilter && answers.filter((item) => item.score > 0).length == 0 ? (
                     <motion.div key={Math.random() * 100} initial={{ opacity: 0 }} animate={controls} className="w-96 h-36" >
                         <div className="text-2xl text-center text-white">No results found</div>
