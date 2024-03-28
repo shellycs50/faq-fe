@@ -70,7 +70,7 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
                             </motion.div>
                             </div>
                             <div className='text-4xl font-bold flex flex-col items-center py-4'>
-                                <h1 className='py-4'>{title}</h1>
+                                <h1 className='py-4 max-w-75% text-center'>{title}</h1>
                                 <Separator orientation="horizontal" className="w-3/4" />
                             </div>
 
