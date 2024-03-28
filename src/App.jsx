@@ -16,12 +16,13 @@ import StudentNav from './components/Navs/StudentNav';
 import AdminNav from './components/Navs/AdminNav';
 import Cookies from 'js-cookie';
 import Success from './components/Pages/Success/Success';
+import PlaceholderNav from './components/Navs/PlaceholderNav';
 
 function App() {
   const queryClient = new QueryClient();
 
   function LogOut() {
-    console.log('attempting to logout')
+    
     // const navigate = useNavigate();
     Cookies.remove('auth_key');
     Cookies.remove('admin');
@@ -34,22 +35,24 @@ function App() {
 
   useEffect(() => {
     let NavbarHack = setInterval(() => {
-      console.log('checking for admin')
+      
       if (Cookies.get('auth_key') && Cookies.get('admin')) {
         setIsAdmin(Cookies.get('admin'))
         clearInterval(NavbarHack);
       }
-    }, 1000);
+    }, 100);
     return () => clearInterval(NavbarHack);
   }, [])
 
   return (
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+      {isAdmin === undefined && <PlaceholderNav />}
       {isAdmin == 1 && <AdminNav LogOut={LogOut} />}
       {isAdmin == 0 && <StudentNav LogOut={LogOut} />}
 
       <Routes>
+        
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -64,7 +67,7 @@ function App() {
       </Routes>
     
     </BrowserRouter>
-    <ReactQueryDevtools initialIsOpen={false} />
+    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }

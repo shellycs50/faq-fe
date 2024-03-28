@@ -1,8 +1,9 @@
-import LanguageSelect from "../LanguageSelect";
+import LanguageSelect from "../../languageSelectMenu/LanguageSelect";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useEffect, useState, useRef } from "react";
-
+import { QueryClient } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion";
 
 function StudentPost() {
     const [selectedLangId, setSelectedLangId] = useState(0);
@@ -11,7 +12,7 @@ function StudentPost() {
     const [errorMessage, setErrorMessage] = useState('');
     const editorRef = useRef(null);
     const navigate = useNavigate();
-
+    const queryClient = new QueryClient();
 
     async function submitHandler(event) {
         event.preventDefault();
@@ -38,6 +39,7 @@ function StudentPost() {
                 setErrorMessage(newstr);
             }
             if (response.status === 201) {
+                queryClient.invalidateQueries('studentqaps');
                 navigate("/success");
             }
         } catch (error) {
@@ -50,13 +52,15 @@ function StudentPost() {
     }
 
     return (
-        <div className="flex flex-col items-center pt-5">
-            <h2 className="text-3xl">Submit a Question</h2>
-            <div className="grid grid-cols-3 gap-4 mt-8 max-h-screen">
-                <div>
+        <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 min-h-screen">
+            <AnimatePresence>
+            <motion.div initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0}} exit={{opacity: 0, y: 100}} className="flex flex-col items-center justify-center bg-gradient-to-tr from-tealywheely via-juicypastel to-tealywheely p-10  md:pt-20 rounded-xl md:h-1/2 lg:h-3/4 w-2/3">
+            <h2 className="text-3xl font-semibold">Submit a Question</h2>
+            <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-3 gap-4 mt-8">
+                <div className="w-auto md:w-1/2">
                 <LanguageSelect
                     id="langselect"
-                    selectstyles="text-lg rounded-lg p-1"
+                    selectstyles="text-lg rounded-lg p-1 w-full"
                     optionstyles="text-lg"
                     selectedLangId={selectedLangId}
                     setSelectedLangId={setSelectedLangId}
@@ -65,14 +69,14 @@ function StudentPost() {
                 <div className="flex flex-col md:w-72">
                     <label
                         htmlFor="message"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        className="block mb-2 text-sm font-medium text-gray-600 dark:text-white"
                     >
                        Your Question
                     </label>
                     <textarea
                         id="message"
                         rows="8" // Increase the number of rows to make the textarea larger
-                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="What's that Git thing again?"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
@@ -93,6 +97,8 @@ function StudentPost() {
                 
                 
             </div>
+            </motion.div>
+            </AnimatePresence>
         </div>
     );
 }

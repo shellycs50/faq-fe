@@ -18,7 +18,7 @@ function TrainerArchive() {
     const { isLoading, error, data: queryData } = useQuery({
         queryFn: () => fetchQaps(),
         queryKey: ['trainerqaps'],
-        staleTime: 1000000,
+        staleTime: 60000, // 1 min
     })
     
     useEffect(() => {
@@ -28,7 +28,6 @@ function TrainerArchive() {
     }, [queryData])
     
     async function fetchQaps() {
-        console.log('attempting to fetch')
         let path = `https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/trainer/faq`;
         const response = await fetch(path, {
             method: 'GET',
@@ -54,12 +53,12 @@ function TrainerArchive() {
     }
     
     return (
-        <div>
+        <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200">
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : (
-                <>
+                <div className="py-16">
                     <Searcher setAnswers={setAnswers} setQuery={setQuery} query={query} answers={answers}/>
                     <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={false}/>
-                </>
+                </div>
             )}
         </div>
     )

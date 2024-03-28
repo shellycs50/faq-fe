@@ -1,47 +1,180 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
+import { useState, useEffect } from 'react';
 const AdminNav = ({ LogOut }) => {
     const location = useLocation();
+    const [navHeight, setnavHeight] = useState("h-32");
+    const [navColor, setnavColor] = useState("bg-transparent");
+    const [fontColor, setFontColor] = useState("text-black");
 
-    return (
-        <nav className="my-2">
-            <ul className="flex justify-around">
-                <li className={`p-2 ${location.pathname === '/trainerpost' ? 'text-blue-700 shadow-lg rounded-full p-4' : 'text-blue-500 p-4'}`}>
-                    <Link
-                        to="/trainerpost"
-                        className="hover:text-blue-700 transition duration-300 ease-in-out transform hover:scale-110"
-                    >
-                        Make a new post
-                    </Link>
-                </li>
-                <li className={`p-2 ${location.pathname === '/trainerarchive' ? 'text-blue-700 shadow-lg rounded-full p-4' : 'text-blue-500 p-4'}`}>
-                    <Link
-                        to="/trainerarchive"
-                        className="hover:text-blue-700 transition duration-300 ease-in-out transform hover:scale-110"
-                    >
-                        Unanswered Questions
-                    </Link>
-                </li>
-                <li className={`p-2 ${location.pathname === '/studenthome' ? 'text-blue-700 shadow-lg rounded-full p-4' : 'text-blue-500 p-4'}`}>
-                    <Link
-                        to="/studenthome"
-                        className="hover:text-blue-700 transition duration-300 ease-in-out transform hover:scale-110"
-                    >
-                        Student Archive
-                    </Link>
-                </li>
-                <li className="text-blue-500 hover:text-blue-700 p-4 cursor-pointer">
-                    <a
-                        onClick={LogOut}
+    const listenScrollEvent = () => {
+        window.scrollY > 20 ? setnavColor("from-black to-juicypastel  bg-opacity-80") : setnavColor("bg-transparent");
+        window.scrollY > 20 ? setFontColor("text-offwhite") : setFontColor("text-black");
+        window.scrollY > 20 ? setnavHeight("h-16") : setnavHeight("h-32");
+        };
+    
+        useEffect(() => {
+            window.addEventListener("scroll", listenScrollEvent);
+            return () => {
+              window.removeEventListener("scroll", listenScrollEvent);
+            };
+            }, []);
 
-                    >
-                        Log out
-                    </a>
-                </li>
-            </ul >
-        </nav >
+            return (
+                <div className={`${navHeight} ${navColor} ${fontColor} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center text-2xl bg-opacity-20 z-10`}>
+                <nav>
+                    <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                        <Link to="/trainerarchive" className="flex items-center space-x-3 rtl:space-x-reverse">
+                        
+                            <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">FAQ</span>
+                        </Link>
+                        <button
+                            data-collapse-toggle="navbar-default"
+                            type="button"
+                            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                            aria-controls="navbar-default"
+                            aria-expanded="false"
+                        >
+                            
+                            <svg
+                                className="w-5 h-5"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 17 14"
+                            >
+                                <path
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M1 1h15M1 7h15M1 13h15"
+                                />
+                            </svg>
+                        </button>
+                        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+                            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 bg-none">
+                                <li>
+                                    <Link
+                                        to="/trainerpost"
+                                        className={`block py-2 px-3 ${
+                                            location.pathname === '/trainerpost'
+                                                ? ' bg-blue-700 rounded md:bg-transparent md:p-0 underline'
+                                                : ' rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0   dark:hover:bg-gray-700  md:dark:hover:bg-transparent'
+                                        }`}
+                                        aria-current="page"
+                                    >
+                                        New Post
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/trainerarchive"
+                                        className={`block py-2 px-3 ${
+                                            location.pathname === '/trainerarchive'
+                                                ? 'underline bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white '
+                                                : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                        }`}
+                                    >
+                                        Questions
+                                    </Link>
+                                </li>
+                                <li>
+                                    <a
+                                        onClick={LogOut}
+                                        className="cursor-pointer block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                    >
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                </div>
     );
 };
 
 export default AdminNav;
+
+
+{/* <nav className={`${navHeight} ${navColor} ${fontColor} bg-gradient-to-b   dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center text-2xl bg-opacity-20`}>
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <Link to="/studenthome" className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FAQ</span>
+                </Link>
+                <button
+                    data-collapse-toggle="navbar-default"
+                    type="button"
+                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="navbar-default"
+                    aria-expanded="false"
+                >
+                    <span className="sr-only">Open main menu</span>
+                    <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 17 14"
+                    >
+                        <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M1 1h15M1 7h15M1 13h15"
+                        />
+                    </svg>
+                </button>
+                <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                            <Link
+                                to="/trainerpost"
+                                className={`block py-2 px-3 ${
+                                    location.pathname === '/trainerpost'
+                                        ? 'text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500'
+                                        : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                }`}
+                            >
+                                Make a new post
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/trainerarchive"
+                                className={`block py-2 px-3 ${
+                                    location.pathname === '/trainerarchive'
+                                        ? 'text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500'
+                                        : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                }`}
+                            >
+                                Unanswered Questions
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/studenthome"
+                                className={`block py-2 px-3 ${
+                                    location.pathname === '/studenthome'
+                                        ? 'text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500'
+                                        : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                                }`}
+                            >
+                                Student Archive
+                            </Link>
+                        </li>
+                        <li>
+                            <a
+                                onClick={LogOut}
+                                className="cursor-pointer block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                            >
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> */}
