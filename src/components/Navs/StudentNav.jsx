@@ -73,7 +73,7 @@ const StudentNav = ({ LogOut }) => {
                                     <Link
                                         to="/studentpost"
                                         className={`block py-2 px-3 ${location.pathname === '/studentpost'
-                                            ? ' bg-blue-700 rounded md:bg-transparent md:p-0 underline'
+                                            ? ' bg-blue-700 rounded md:bg-transparent md:p-0 font-semibold'
                                             : ' rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0   dark:hover:bg-gray-700  md:dark:hover:bg-transparent'
                                             }`}
 
@@ -87,7 +87,7 @@ const StudentNav = ({ LogOut }) => {
                                     <Link
                                         to="/studenthome"
                                         className={`block py-2 px-3 ${location.pathname === '/studenthome'
-                                            ? 'underline bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white '
+                                            ? 'font-semibold bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white' 
                                             : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                                             }`}
                                     >
