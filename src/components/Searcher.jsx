@@ -85,12 +85,12 @@ const handleToggleChange = (event) => {
 
 
 return (
-    <div onSubmit={(e) => e.preventDefault()} className="flex flex-row pt-20 justify-center font-sans md:text-2xl xl:text-6xl -z-10">
+    <div onSubmit={(e) => e.preventDefault()} className="flex flex-row pt-20 justify-center font-sans sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl -z-10">
         <form className="gap-4 md:gap-0 flex flex-col md:flex-row md:justify-evenly p-0 border-b-solid border-black  text-black w-2/3 lg:w-1/2 placeholder-slate-900">
             <motion.input initial={{scale: 0.98}} whileFocus={{scale: 1, transition: { duration: 0.01}}} placeholder="Search for answers"type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} className="text-left placeholder-muted-foreground shadow-2xl w-full lg:h-24 text-slate-900 p-6 lg:p-14 border-2 rounded-full outline-none bg-slate-200 focus:bg-white transition-all duration-500 ease-in-out" />
             <div className="self-center flex flex-row md:flex-col md:items-center w-20 gap-2 h-full justify-center">
                 <p className="order-first md:order-none text-sm text-center text-slate-600 font-semibold">Only Show Matches</p>
-                <Switch className="self-center" onCheckedChange={handleToggleChange} checked={(() => { return toggle })()}  data-state="checked" />
+                <Switch className="self-center" onCheckedChange={handleToggleChange} checked={toggle}  data-state="checked" />
             </div>
         </form>
     </div>
