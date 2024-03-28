@@ -23,7 +23,7 @@ function basicTokenizer(text) {
     text = text.replace(/[^\w\s]/g, ' ');
     text = text.replace(/\s+/g, ' ').trim();
     let tokens = text.toLowerCase().split(' ').filter(token => token.length > 2 && token != 'how');
-    tokens.length == 0 && tokens.push("")
+    // tokens.length == 0 && tokens.push("")
     return tokens
 }
 
@@ -36,10 +36,14 @@ useEffect(() => {
 function sortQaps() {
     const Qaps = answers; 
     let tokens = basicTokenizer(query);
+    console.log(tokens)
     const arraysEqual = tokens.length === prevTokens.length && tokens.every((value, index) => value === prevTokens[index]);
     if (arraysEqual && toggle == prevToggle) return;
     setShouldFilter(toggle)
-    tokens[0] == "" && setShouldFilter(false);
+    if (tokens.length == 0) {
+        setShouldFilter(false);
+        setAnswers(Qaps);
+    }
     setAnswers(tokenSort(tokens, Qaps));
     setPrevTokens(tokens);
 }
@@ -48,7 +52,7 @@ function sortQaps() {
 function tokenSort(queryArray, resultsArray) {
     // count case insensitive matches of words in the query string with words in question title, (for each question answer pair object)
     // sort desc on matches
-    // serialise back to qap without score (probably a waste of compute but OK for now)
+    // serialise back to qap with score
     // return sorted results array
 
     let rankedPosts = [];
