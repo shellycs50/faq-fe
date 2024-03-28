@@ -16,7 +16,7 @@ function Searcher({ answers, setAnswers, setShouldFilter, toggle, setToggle, use
         }
         timeoutRef.current = setTimeout(() => {
             setQuery(userQuery);
-        }, 300);
+        }, 500);
     }, [userQuery]);
 
 function basicTokenizer(text) {
