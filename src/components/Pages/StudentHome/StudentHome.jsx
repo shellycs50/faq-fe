@@ -6,10 +6,12 @@ import { useQuery } from "@tanstack/react-query";
 import Cookies from 'js-cookie'
 import DOMPurify from "dompurify";
 import { motion, AnimatePresence } from 'framer-motion'
+import { Separator } from "../../../../components/ui/separator";
 
 function StudentHome() {
     const [answers, setAnswers] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalTitle, setModalTitle] = useState("");
     const [modalContent, setModalContent] = useState("");
     const [shouldFilter, setShouldFilter] = useState(false);
     const [userQuery, setUserQuery] = useState("");
@@ -52,14 +54,16 @@ function StudentHome() {
 
 
     function modalOpen(id) {
-        setIsModalOpen(true);
         setModalContent(answers[id].answer);
+        setModalTitle(answers[id].question);
+        setIsModalOpen(true);
     }
     return (
         <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 " >
-            {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> :
+            {isModalOpen ? <PostModal title={modalTitle} content={modalContent} setIsModalOpen={setIsModalOpen} /> :
                 <div className="py-16 min-h-screen">
                     <Searcher setAnswers={setAnswers} answers={answers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery}/>
+                    
                     <AnimatePresence>
                         <motion.div key="answer-container" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }}>
                             <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={true} shouldFilter={shouldFilter} />

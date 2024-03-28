@@ -36,7 +36,7 @@ useEffect(() => {
 function sortQaps() {
     const Qaps = answers; 
     let tokens = basicTokenizer(query);
-    console.log(tokens)
+
     const arraysEqual = tokens.length === prevTokens.length && tokens.every((value, index) => value === prevTokens[index]);
     if (arraysEqual && toggle == prevToggle) return;
     setShouldFilter(toggle)
