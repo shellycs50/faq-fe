@@ -32,10 +32,6 @@ const StudentNav = ({ LogOut }) => {
         };
     }, []);
 
-    function openDropdown() {
-    }
-
-
     return (
         <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center z-10`}>
             <nav>

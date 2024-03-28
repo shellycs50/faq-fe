@@ -54,13 +54,13 @@ function StudentPost() {
     return (
         <div className="flex flex-col items-center justify-center bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 min-h-screen">
             <AnimatePresence>
-            <motion.div initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0}} exit={{opacity: 0, y: 100}} className="flex flex-col items-center justify-center bg-gradient-to-tr from-tealywheely via-juicypastel to-tealywheely p-20 pt-32 md:pt-20 rounded-xl h-3/4 w-full">
+            <motion.div initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0}} exit={{opacity: 0, y: 100}} className="flex flex-col items-center justify-center bg-gradient-to-tr from-tealywheely via-juicypastel to-tealywheely p-10  md:pt-20 rounded-xl md:h-1/2 lg:h-3/4 w-2/3">
             <h2 className="text-3xl font-semibold">Submit a Question</h2>
             <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-3 gap-4 mt-8">
-                <div>
+                <div className="w-auto md:w-1/2">
                 <LanguageSelect
                     id="langselect"
-                    selectstyles="text-lg rounded-lg p-1"
+                    selectstyles="text-lg rounded-lg p-1 w-full"
                     optionstyles="text-lg"
                     selectedLangId={selectedLangId}
                     setSelectedLangId={setSelectedLangId}

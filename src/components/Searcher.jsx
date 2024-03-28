@@ -22,7 +22,9 @@ function Searcher({ answers, setAnswers, setShouldFilter, toggle, setToggle, use
 function basicTokenizer(text) {
     text = text.replace(/[^\w\s]/g, ' ');
     text = text.replace(/\s+/g, ' ').trim();
-    return text.toLowerCase().split(' ');
+    let tokens = text.toLowerCase().split(' ').filter(token => token.length > 2 && token != 'how');
+    tokens.length == 0 && tokens.push("")
+    return tokens
 }
 
 useEffect(() => {
@@ -31,9 +33,9 @@ useEffect(() => {
     sortQaps()
 }, [query, toggle])
 
-function sortQaps() { 
+function sortQaps() {
     const Qaps = answers; 
-    const tokens = basicTokenizer(query);
+    let tokens = basicTokenizer(query);
     const arraysEqual = tokens.length === prevTokens.length && tokens.every((value, index) => value === prevTokens[index]);
     if (arraysEqual && toggle == prevToggle) return;
     setShouldFilter(toggle)
