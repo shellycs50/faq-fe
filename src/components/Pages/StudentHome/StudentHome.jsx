@@ -13,6 +13,7 @@ function StudentHome() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalTitle, setModalTitle] = useState("");
     const [modalContent, setModalContent] = useState("");
+    const [modalLang, setModalLang] = useState("");
     const [shouldFilter, setShouldFilter] = useState(false);
     const [userQuery, setUserQuery] = useState("");
     const [toggle, setToggle] = useState(true);
@@ -56,11 +57,12 @@ function StudentHome() {
     function modalOpen(id) {
         setModalContent(answers[id].answer);
         setModalTitle(answers[id].question);
+        setModalLang(answers[id].language);
         setIsModalOpen(true);
     }
     return (
         <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 " >
-            {isModalOpen ? <PostModal title={modalTitle} content={modalContent} setIsModalOpen={setIsModalOpen} /> :
+            {isModalOpen ? <PostModal title={modalTitle} content={modalContent} lang={modalLang} setIsModalOpen={setIsModalOpen} /> :
                 <div className="py-16 min-h-screen">
                     <Searcher setAnswers={setAnswers} answers={answers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery}/>
                     

@@ -60,6 +60,35 @@ function Login() {
       }
     }
   }, []);
+
+
+  async function guestSignIn() {
+    try {
+      const response = await fetch("https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/guest", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await response.json();
+      saveCookie(result.token);
+      if (result.rank == 1) {
+        Cookies.set('admin', 1, { expires: 7 }); //for the scale of the project this is fine, and all admin routes are protected by auth key verification.
+        navigate('/trainerpost')
+      }
+      if (result.rank == 0){
+        Cookies.set('admin', 0, { expires: 7 });
+        navigate('/studenthome')
+      }
+      else {
+        setIsError(true);
+      }
+
+
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
   
 
   
@@ -102,9 +131,13 @@ function Login() {
            
           
         </form>
-        <p className="mt-4">
+        <p className='my-4'>
+          <a onClick={guestSignIn} className="text-blue-500 cursor-pointer">Sign in as guest</a>
+          </p>
+        <p className="my-4">
           Don't have an account? <Link to="/register" className="text-blue-500">Register here</Link>.
         </p>
+        
       </div>
     </div>
   );
