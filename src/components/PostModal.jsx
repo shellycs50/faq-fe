@@ -3,8 +3,9 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Separator } from '../../components/ui/separator';
 
-function PostModal({ content, setIsModalOpen }) {
+function PostModal({ content, setIsModalOpen, title }) {
 
     const modalContentRef = useRef(null);
     
@@ -59,13 +60,18 @@ function PostModal({ content, setIsModalOpen }) {
                 <div className="flex flex-col justify-center items-center rounded-3xl p-10 h-full w-full relative" ref={modalContentRef}>
                 <AnimatePresence >
                     <motion.div key="modal" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0}} exit={{opacity: 0, y: 100}} className='flex flex-col bg-baseblue bg-opacity-60 p-4 rounded-lg justify-start' id="post-modal">
-                        <motion.div whileHover={{scale: 1.2, rotateZ: 180, transition: {duration: .2}}} className='cursor-pointer hover:relative hover:text-blue-500 transition-all duration-300 ease-in-out text-3xl self-end'>
+                        <motion.div whileHover={{scale: 1.4, rotateZ: 180, transition: {duration: .2}}} className='cursor-pointer hover:relative hover:text-blue-500 transition-all duration-300 ease-in-out text-3xl self-end'>
                             <FaTimes
                                 className=""
                                 onClick={() => setIsModalOpen(false)}
                             />
                         </motion.div>
-                        <div className='justify-self-center flex flex-col justify-center md:text-xl relative w-screen md:w-auto'>
+                        <div className='text-4xl font-bold flex flex-col items-center py-4'>
+                            <h1 className='py-4'>{title}</h1>
+                            <Separator orientation="horizontal" className="w-3/4"/>
+                        </div>
+                        
+                        <div className='self-center flex flex-col justify-center md:text-xl relative w-full max-w-7xl md:w-auto'>
                             <div className="p-5 pt-30 overflow-y-auto" dangerouslySetInnerHTML={{ __html: content }}></div>
                         </div>
 
