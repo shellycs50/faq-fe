@@ -29,7 +29,7 @@ function ContainerAnswerListing({ modalOpen, answers, isAnswer, shouldFilter }) 
                             shouldFilter && item.score > 0 || !shouldFilter ? (
                                 <div key={i}>
                                 <motion.div key={i} initial={{ opacity: 0 }} animate={controls} whileHover={{ y: -3, scale: 1.01, transition: { duration: .3, delay: .2 } }} 
-                                className={`w-3/4 md:w-96 md:h-36 ${!shouldRedGreen ? "border-4 border-tealywheely rounded-xl" : item.score > 0 ? "border-4 border-green-300 rounded-xl" : "border-4 border-red-100 rounded-xl"}`}>
+                                className={`w-3/4 md:w-96 md:h-36 ${!shouldRedGreen ? "border-4 border-slate-200 rounded-xl" : item.score > 0 ? "border-4 border-green-300 rounded-xl" : "border-4 border-red-100 rounded-xl"}`}>
                                     <NewAnswerListing key={i} question={item.question} answer={item.answer} answerer_id={item.answerer_id} language={item.language} id={i} modalOpen={modalOpen} />
                                 </motion.div>
                                 </div>
