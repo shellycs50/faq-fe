@@ -16,13 +16,12 @@ const StudentNav = ({ LogOut }) => {
     const [navHeight, setnavHeight] = useState("h-32");
     const [navColor, setnavColor] = useState("bg-transparent");
     const [fontColor, setFontColor] = useState("text-black");
-    const [fontSize, setFontSize] = useState("text-2xl");
+    const [fontSize, setFontSize] = useState("text-xl");
 
     const listenScrollEvent = () => {
         window.scrollY > 20 ? setnavColor("from-juicypastel to-black") : setnavColor("bg-transparent");
         window.scrollY > 20 ? setFontColor("text-offwhite") : setFontColor("text-black");
         window.scrollY > 20 ? setnavHeight("h-16") : setnavHeight("h-32");
-        window.scrollY > 20 ? setFontSize("text-xl") : setFontSize("text-2xl");
     };
 
     useEffect(() => {
@@ -36,7 +35,7 @@ const StudentNav = ({ LogOut }) => {
         <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center z-10`}>
             <nav>
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <motion.div whileHover={{ scale: 1.05, transition: { duration: .2 } }}>
+                    <motion.div whileHover={{ scale: 1.1, transition: { duration: .1 } }}>
                         <Link to="/studenthome" className="flex items-center space-x-3 rtl:space-x-reverse">
 
                             <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">FAQ</span>
@@ -73,7 +72,7 @@ const StudentNav = ({ LogOut }) => {
                                     <Link
                                         to="/studentpost"
                                         className={`block py-2 px-3 ${location.pathname === '/studentpost'
-                                            ? ' bg-blue-700 rounded md:bg-transparent md:p-0 font-semibold'
+                                            ? ' bg-blue-700 rounded md:bg-transparent md:p-0 font-bold'
                                             : ' rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0   dark:hover:bg-gray-700  md:dark:hover:bg-transparent'
                                             }`}
 
@@ -87,7 +86,7 @@ const StudentNav = ({ LogOut }) => {
                                     <Link
                                         to="/studenthome"
                                         className={`block py-2 px-3 ${location.pathname === '/studenthome'
-                                            ? 'font-semibold bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white' 
+                                            ? 'font-bold bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white' 
                                             : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                                             }`}
                                     >

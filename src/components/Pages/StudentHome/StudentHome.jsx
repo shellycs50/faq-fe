@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Cookies from 'js-cookie'
 import DOMPurify from "dompurify";
 import { motion, AnimatePresence } from 'framer-motion'
+import { Separator } from "../../../../components/ui/separator";
 
 function StudentHome() {
     const [answers, setAnswers] = useState([])
@@ -60,6 +61,7 @@ function StudentHome() {
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> :
                 <div className="py-16 min-h-screen">
                     <Searcher setAnswers={setAnswers} answers={answers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery}/>
+                    
                     <AnimatePresence>
                         <motion.div key="answer-container" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }}>
                             <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={true} shouldFilter={shouldFilter} />
