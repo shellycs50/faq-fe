@@ -55,9 +55,9 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
 
     return (
 
-        <div className=' flex flex-col min-h-screen max-w-7xl justify-center items-center bg-gray-200 pt-20 md:pt-32 -z-10'>
+        <div className=' flex flex-col min-h-screen w-full justify-center items-center bg-gray-200 pt-20 md:pt-32 -z-10'>
             <div className=''>
-                <div className="flex flex-col justify-center items-center rounded-3xl p-10 h-full w-auto relative" ref={modalContentRef}>
+                <div className="flex flex-col justify-center items-center rounded-3xl p-10 h-full max-w-7xl relative" ref={modalContentRef}>
                     <AnimatePresence >
                         <motion.div key="modal" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }} className='flex flex-col bg-baseblue bg-opacity-60 p-4 rounded-lg justify-start' id="post-modal">
                             <div className='flex flex-row justify-between'>
@@ -74,7 +74,7 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
                                 <Separator orientation="horizontal" className="w-3/4" />
                             </div>
 
-                            <div className='self-center flex flex-col justify-center md:text-xl relative max-w-xs  sm:max-w-xl md:max-w-3xl lg:max-w-6xl md:w-auto'>
+                            <div className='self-center flex flex-col justify-center md:text-xl relative max-w-xs  sm:max-w-xl md:max-w-3xl lg:max-w-none md:w-auto'>
                                 <div className="p-5 pt-30 overflow-y-auto" dangerouslySetInnerHTML={{ __html: content }}></div>
                             </div>
 
