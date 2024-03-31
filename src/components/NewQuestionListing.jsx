@@ -9,6 +9,7 @@ import {
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useEffect, useState } from 'react';
 function NewQuestionListing({ question, id, modalOpen, language }) {
+
     return (
         <a onClick={() => {modalOpen(id)}} className='w-full'>
             <Card>
