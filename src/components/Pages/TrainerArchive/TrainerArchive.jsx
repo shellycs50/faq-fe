@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import Cookies from 'js-cookie'
 import DOMPurify from "dompurify";
 import Searcher from "../../Searcher";
+import { motion, AnimatePresence } from 'framer-motion'
 
 function TrainerArchive() {
     const navigate = useNavigate();
@@ -58,9 +59,13 @@ function TrainerArchive() {
     return (
         <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200">
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : (
-                <div className="py-16">
-                    <Searcher setAnswers={setAnswers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} setQuery={setQuery} query={query} answers={answers}/>
-                    <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={false}/>
+                <div className="py-16 min-h-screen">
+                    <Searcher setAnswers={setAnswers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery} answers={answers}/>
+                    <AnimatePresence>
+                        <motion.div key="answer-container" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }}>
+                            <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={true} shouldFilter={shouldFilter} />
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             )}
         </div>
