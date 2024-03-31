@@ -8,10 +8,12 @@ import {
 } from '../../components/ui/card';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useEffect, useState } from 'react';
-function NewQuestionListing({ question, id, modalOpen, language }) {
+function NewQuestionListing({ question, qap_id, modalOpen, language }) {
 
     return (
-        <a onClick={() => {modalOpen(id)}} className='w-full'>
+        <a onClick={() => {
+            console.log(qap_id)
+            modalOpen(qap_id)}} className='w-full'>
             <Card>
                 <CardHeader>
                     <CardTitle>{question.length > 65 ? `${question.slice(0, 65)}...` : question}</CardTitle>

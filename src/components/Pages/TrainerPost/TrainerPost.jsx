@@ -78,7 +78,7 @@ function TrainerPost() {
                         <QuestionBuilder editorRef={editorRef} />
                         </div>
                     </div>
-                    <div className="flex flex-row justify-center gap-5">
+                    <div className="flex flex-row w-full justify-center gap-5">
                         <button type='submit' onClick={submitHandler} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer">Submit</button>
                     </div>
                 </form>
