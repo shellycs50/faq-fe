@@ -35,14 +35,27 @@ function App() {
 
   useEffect(() => {
     let NavbarHack = setInterval(() => {
-      
-      if (Cookies.get('auth_key') && Cookies.get('admin')) {
+      if (!isAdmin && Cookies.get('auth_key') && Cookies.get('admin')) {
         setIsAdmin(Cookies.get('admin'))
         clearInterval(NavbarHack);
       }
-    }, 100);
+    }, 200);
+    if (!Cookies.get('auth_key') && window.location.pathname !== '/login' && window.location.pathname !== '/register') {
+      window.location.href = '/login';
+    }
+    if (window.location.pathname === '/trainerpost' || window.location.pathname === '/trainerarchive' || window.location.pathname === '/traineredit') {
+      if (isAdmin == 0 && Cookies.get('auth_key')) {
+        window.location.href = '/studenthome';
+      }
+      // if (isAdmin == undefined && Cookies.get('auth_key')) {
+      //   window.location.href = '/login';
+      // }
+    }
+    
     return () => clearInterval(NavbarHack);
   }, [])
+
+ 
 
   return (
     <QueryClientProvider client={queryClient}>

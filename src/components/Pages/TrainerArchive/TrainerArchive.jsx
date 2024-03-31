@@ -14,6 +14,9 @@ function TrainerArchive() {
     const [query, setQuery] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState("");
+    const [shouldFilter, setShouldFilter] = useState(false);
+    const [userQuery, setUserQuery] = useState("");
+    const [toggle, setToggle] = useState(true);
     
     const { isLoading, error, data: queryData } = useQuery({
         queryFn: () => fetchQaps(),
@@ -56,7 +59,7 @@ function TrainerArchive() {
         <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200">
             {isModalOpen ? <PostModal content={modalContent} setIsModalOpen={setIsModalOpen} /> : (
                 <div className="py-16">
-                    <Searcher setAnswers={setAnswers} setQuery={setQuery} query={query} answers={answers}/>
+                    <Searcher setAnswers={setAnswers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} setQuery={setQuery} query={query} answers={answers}/>
                     <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={false}/>
                 </div>
             )}

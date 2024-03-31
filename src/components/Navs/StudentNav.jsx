@@ -35,7 +35,7 @@ const StudentNav = ({ LogOut }) => {
         <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center z-10`}>
             <nav>
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <motion.div whileHover={{ scale: 1.1, transition: { duration: .1 } }}>
+                    <motion.div whileHover={{ scale: 1.03, transition: { duration: .1 } }}>
                         <Link to="/studenthome" className="flex items-center space-x-3 rtl:space-x-reverse">
 
                             <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">FAQ</span>
@@ -58,9 +58,9 @@ const StudentNav = ({ LogOut }) => {
                                 <DropdownMenuSeparator />
                                 <a onClick={LogOut}
                                 >
-                                <DropdownMenuItem>Log Out</DropdownMenuItem>
+                                    <DropdownMenuItem>Log Out</DropdownMenuItem>
                                 </a>
-                               
+
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
@@ -68,7 +68,7 @@ const StudentNav = ({ LogOut }) => {
                     <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                         <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 bg-none">
                             <li>
-                                <motion.div whileHover={{ scale: 1.05, transition: { duration: .2 } }}>
+                                <motion.div whileHover={{ scale: 1.03, transition: { duration: .2 } }}>
                                     <Link
                                         to="/studentpost"
                                         className={`block py-2 px-3 ${location.pathname === '/studentpost'
@@ -82,11 +82,11 @@ const StudentNav = ({ LogOut }) => {
                                 </motion.div>
                             </li>
                             <li>
-                                <motion.div whileHover={{ scale: 1.05, transition: { duration: .2 } }}>
+                                <motion.div whileHover={{ scale: 1.03, transition: { duration: .2 } }}>
                                     <Link
                                         to="/studenthome"
                                         className={`block py-2 px-3 ${location.pathname === '/studenthome'
-                                            ? 'font-bold bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white' 
+                                            ? 'font-bold bg-blue-700 rounded md:bg-transparent md:p-0 dark:text-white'
                                             : 'text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                                             }`}
                                     >
@@ -95,7 +95,7 @@ const StudentNav = ({ LogOut }) => {
                                 </motion.div>
                             </li>
                             <li>
-                                <motion.div whileHover={{ scale: 1.05, transition: { duration: .2 } }}>
+                                <motion.div whileHover={{ scale: 1.03, transition: { duration: .2 } }}>
                                     <a
                                         onClick={LogOut}
                                         className="cursor-pointer block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
