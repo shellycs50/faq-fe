@@ -20,6 +20,7 @@ function Searcher({ answers, setAnswers, setShouldFilter, toggle, setToggle, use
     }, [userQuery]);
 
 function basicTokenizer(text) {
+    if (!text) return [];
     text = text.replace(/[^\w\s]/g, ' ');
     text = text.replace(/\s+/g, ' ').trim();
     let tokens = text.toLowerCase().split(' ').filter(token => token.length > 2 && token != 'how');

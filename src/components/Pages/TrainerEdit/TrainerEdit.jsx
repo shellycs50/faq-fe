@@ -19,7 +19,7 @@ function TrainerEdit() {
     let nonStateTitle = ""
     let nonStateLang = null
 
-
+    
     async function fetchQuestion(id) {
         const response = await fetch(`https://faq-api-demo.robsheldrick.dev.io-academy.uk/api/trainer/faq/${id}`, {
             method: 'GET',

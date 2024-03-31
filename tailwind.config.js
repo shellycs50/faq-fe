@@ -21,6 +21,9 @@ module.exports = {
       },
     },
     extend: {
+      maxWidth: {
+        '75%': '75%',
+      },
       spacing: {
         '6px': '6px',
       },
