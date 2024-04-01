@@ -5,14 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 function QuestionBuilder({ editorRef }) {
   const [editorIsLoaded, setEditorIsLoaded] = useState(false)
   function handleEditorInit(event, editor) {
-    console.log("called")
     editorRef.current = editor
     setEditorIsLoaded(true)
   }
-
-  useEffect(() => {
-    console.log(editorRef.current)
-  }, [editorRef])
   return (
     <>
     {!editorIsLoaded && 
