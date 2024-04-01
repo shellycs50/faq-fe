@@ -53,6 +53,7 @@ function TrainerArchive() {
 
 
     function modalOpen(id) {
+        console.log(id)
         navigate(`/traineredit/${id}`)
     }
     
@@ -63,7 +64,7 @@ function TrainerArchive() {
                     <Searcher setAnswers={setAnswers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery} answers={answers}/>
                     <AnimatePresence>
                         <motion.div key="answer-container" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }}>
-                            <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={true} shouldFilter={shouldFilter} />
+                            <ContainerAnswerListing modalOpen={modalOpen} answers={answers} isAnswer={false} shouldFilter={shouldFilter} />
                         </motion.div>
                     </AnimatePresence>
                 </div>
