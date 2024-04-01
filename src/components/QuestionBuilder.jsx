@@ -17,7 +17,7 @@ function QuestionBuilder({ editorRef }) {
     <>
     {!editorIsLoaded && 
     <AnimatePresence>
-    <motion.div initial={{opacity: 1}} animate={{opacity:1, transition: {duration: 2}}} exit={{opacity: 0}} className="mb-5 w-full h-500px lg:w-601px bg-white rounded-xl flex flex-col justify-center items-center text-xl">
+    <motion.div initial={{opacity: 1}} animate={{opacity:1, transition: {duration: .3}}} exit={{opacity: 0}} className="mb-5 w-full h-500px lg:w-601px bg-white rounded-xl flex flex-col justify-center items-center text-xl">
       <div role="status" className="w-full animate-pulse flex flex-col items-start">
     
     <span className="sr-only">Loading...</span>
@@ -26,7 +26,7 @@ function QuestionBuilder({ editorRef }) {
     </AnimatePresence>}
     
     {<AnimatePresence>
-      <motion.div initial={{opacity: 0}} animate={{opacity:1, transition: {duration: 2}}}>
+      <motion.div initial={{opacity: 0}} animate={{opacity:1, transition: {duration: .3}}}>
         <div className={` flex-col gap-5 + ${editorIsLoaded ? "flex" : "hidden"}`}>
           <Editor
             apiKey='3sl4l9qujv8w3c1ks86rbw3zoy9s2nmh2xkg4v0rb1lxf648'
