@@ -44,7 +44,7 @@ function App() {
       window.location.href = '/login';
     }
     if (window.location.pathname === '/trainerpost' || window.location.pathname === '/trainerarchive' || window.location.pathname === '/traineredit') {
-      if (isAdmin == 0 && Cookies.get('auth_key')) {
+      if (isAdmin == 0 || Cookies.get('admin') == 0 && Cookies.get('auth_key')) {
         window.location.href = '/studenthome';
       }
       // if (isAdmin == undefined && Cookies.get('auth_key')) {

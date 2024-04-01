@@ -10,7 +10,7 @@ module.exports = {
   prefix: "",
   theme: {
     fontFamily: {
-      'sans': ['system-ui', 'inter', 'sans-serif'],
+      'sans': ['inter', 'inter', 'sans-serif'],
     },
     container: {
       center: true,
@@ -26,6 +26,8 @@ module.exports = {
       },
       spacing: {
         '6px': '6px',
+        '500px': '500px',
+        '601px': '601px',
       },
       fontFamily: {
         'playfair': ['Playfair', 'serif'],

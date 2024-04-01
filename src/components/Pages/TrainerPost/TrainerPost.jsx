@@ -50,7 +50,7 @@ function TrainerPost() {
     }
 
     return (
-        <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200  h-screen py-20 md:py-24">
+        <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 h-screen py-20 md:py-24">
             <div className="rounded-lg bg-slate-800 pb-10">
                 <h1 className="text-4xl text-center font-bold p-10 text-white my-4">Add a Question and Answer in one go.</h1>
                 <form className="mt-10">

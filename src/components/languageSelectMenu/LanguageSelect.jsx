@@ -20,9 +20,9 @@ function LanguageSelect({selectstyles = '', optionstyles = '', selectedLangId, s
     }
 
     return (
-        langs.length < 1 ? <LanguageSelectPlaceholder selectstyles={selectstyles} optionstyles={optionstyles}/> :
+        langs && langs.length < 1 ? <LanguageSelectPlaceholder selectstyles={selectstyles} optionstyles={optionstyles}/> :
         <select className={selectstyles} onChange={(e) => setSelectedLangId(e.target.value)} value={selectedLangId}>
-            {langs.map((language) => (
+            {langs && langs.map((language) => (
                 <option className={optionstyles} key={language.id} value={language.id}>{language.name}</option>
             ))}
         </select>
