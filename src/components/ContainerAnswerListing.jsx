@@ -13,11 +13,11 @@ function ContainerAnswerListing({ modalOpen, answers, isAnswer, shouldFilter }) 
         (async () => {
 
             controls.start({ opacity: [.5, 1], transition: { duration: 1 } })
-            console.log(isAnswer)
+            
         })()
     }, [answers])
 
-    const [shouldRedGreen, setShouldRedGreen] = useState(false);
+    const [shouldRedGreen, setShouldRedGreen] = useState(undefined);
 
     useEffect(() => {
         answers.filter((item) => item.score > 0).length == 0 ? setShouldRedGreen(false) : setShouldRedGreen(true);

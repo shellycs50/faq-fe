@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Switch } from "../../components/ui/switch";
 // import useThrottle from "../Helpers/useThrottle";
-function Searcher({ answers, setAnswers, setShouldFilter, toggle, setToggle, userQuery, setUserQuery }) {
+function Searcher({ answers, setAnswers, setShouldFilter, toggle, setToggle, userQuery, setUserQuery, query, setQuery }) {
     
-    const [query, setQuery] = useState("");
+    
     const [prevTokens, setPrevTokens] = useState([]);
     const [prevToggle, setPrevToggle] = useState(false);
     // const throttle = useThrottle();
@@ -79,15 +79,6 @@ const handleToggleChange = (event) => {
     setPrevToggle(toggle);
     setToggle(event);
   };
-
-  // weird behaviour - monitor
-
-//   useEffect(() => {
-//     setInterval(() => {
-//         console.log(toggle)
-//     }, 1000)
-//     }, [toggle])
-
 
 return (
     <div onSubmit={(e) => e.preventDefault()} className="w-full flex flex-row pt-20 justify-center font-sans sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl -z-10">
