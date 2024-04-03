@@ -24,7 +24,7 @@ function NewAnswerListing({ question, language, id, modalOpen, }) {
 
         // </a>
 
-        <a onClick={() => {modalOpen(id)}} className='w-full'>
+        <a onClick={() => {modalOpen(id)}} className='w-full h-full'>
             <Card>
                 <CardHeader>
                     <CardTitle>{question.length > 65 ? `${question.slice(0, 65)}...` : question}</CardTitle>
