@@ -132,7 +132,7 @@ function Login() {
           
         </form>
         <p className='my-4'>
-          <a onClick={guestSignIn} className="text-blue-500 cursor-pointer">Sign in as guest</a>
+          Just browsing? <a onClick={guestSignIn} className="text-blue-500 cursor-pointer">Sign in as guest</a>
           </p>
         <p className="my-4">
           Don't have an account? <Link to="/register" className="text-blue-500">Register here</Link>.

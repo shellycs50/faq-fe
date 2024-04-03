@@ -32,7 +32,7 @@ const StudentNav = ({ LogOut }) => {
     }, []);
 
     return (
-        <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center z-10`}>
+        <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-700 flex flex-col justify-center z-10`}>
             <nav>
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <motion.div whileHover={{ scale: 1.03, transition: { duration: .1 } }}>
