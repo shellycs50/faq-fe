@@ -55,11 +55,11 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
 
     return (
 
-        <div className=' flex flex-col min-h-screen w-full justify-center items-center bg-gray-200 pt-20 md:pt-32 -z-10'>
+        <div className=' flex flex-col min-h-screen w-full justify-center items-center bg-baseblue pt-20 md:pt-32 -z-10'>
             <div className=''>
                 <div className="flex flex-col justify-center items-center rounded-3xl p-10 h-full max-w-7xl relative" ref={modalContentRef}>
                     <AnimatePresence >
-                        <motion.div key="modal" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }} className='flex flex-col bg-baseblue bg-opacity-60 p-4 rounded-lg justify-start' id="post-modal">
+                        <motion.div key="modal" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }} className='flex flex-col bg-white p-4 border-4 border-slate-200 rounded-xl justify-start' id="post-modal">
                             <div className='flex flex-row justify-between'>
                             <p className='font-semibold text-slate-700'>{lang}</p>
                             <motion.div whileHover={{ scale: 1.4, rotateZ: 180, transition: { duration: .2 } }} className='cursor-pointer hover:relative hover:text-blue-500 transition-all duration-300 ease-in-out text-3xl'>
@@ -75,7 +75,7 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
                             </div>
 
                             <div className='self-center flex flex-col justify-center md:text-xl relative max-w-xs  sm:max-w-xl md:max-w-3xl lg:max-w-none md:w-auto'>
-                                <div className="p-5 pt-30 overflow-y-auto" dangerouslySetInnerHTML={{ __html: content }}></div>
+                                <div className="p-5 pt-30 overflow-y-auto prose-lg prose-code:font-semibold prose-code:rounded-xl prose-code:bg-opacity-50 prose-code:text-xl" dangerouslySetInnerHTML={{ __html: content }}></div>
                             </div>
 
                         </motion.div>

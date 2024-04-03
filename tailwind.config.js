@@ -10,7 +10,7 @@ module.exports = {
   prefix: "",
   theme: {
     fontFamily: {
-      'sans': ['inter', 'inter', 'sans-serif'],
+      'sans': ['inter', 'sans-serif', 'sans-serif'],
     },
     container: {
       center: true,
@@ -30,7 +30,7 @@ module.exports = {
         '601px': '601px',
       },
       fontFamily: {
-        'playfair': ['Playfair', 'serif'],
+        'inter': ['Inter', 'serif'],
 
       },
       colors: {
@@ -71,7 +71,10 @@ module.exports = {
         "offwhite": "#F8F6E3",
         "baseblue": "#7AA2E3",
         "tealywheely": "#97E7E1",
-        "midblue": "#6AD4DD"
+        "midblue": "#6AD4DD",
+        "charcoal": "#333333",
+        "deeppurple": "#4B0082",
+        'deepblue': '#001F3F',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -94,5 +97,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
 }

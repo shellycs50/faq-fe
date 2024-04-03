@@ -61,7 +61,7 @@ function StudentHome() {
         setIsModalOpen(true);
     }
     return (
-        <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 " >
+        <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200" >
             {isModalOpen ? <PostModal title={modalTitle} content={modalContent} lang={modalLang} setIsModalOpen={setIsModalOpen} /> :
                 <div className="py-16 min-h-screen">
                     <Searcher query={query} setQuery={setQuery} setAnswers={setAnswers} answers={answers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery}/>

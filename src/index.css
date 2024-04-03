@@ -2,11 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @font-face {
-  font-family: 'Playfair';
-  src: url('./assets/fonts/misc/PlayfairDisplay-Black.ttf') format('truetype');
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400; 
+  src: url('./assets/fonts/misc/Inter-Regular.ttf') format('truetype'),
+       
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600; 
+  src: url('./assets/fonts/misc/Inter-SemiBold.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700; 
+  src: url('./assets/fonts/misc/Inter-Bold.ttf') format('truetype'),
+}
 
 @layer base {
   :root {
