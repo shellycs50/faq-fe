@@ -14,8 +14,9 @@ function StudentHome() {
     const [modalTitle, setModalTitle] = useState("");
     const [modalContent, setModalContent] = useState("");
     const [modalLang, setModalLang] = useState("");
-    const [shouldFilter, setShouldFilter] = useState(false);
+    const [shouldFilter, setShouldFilter] = useState(true);
     const [userQuery, setUserQuery] = useState("");
+    const [query, setQuery] = useState("");
     const [toggle, setToggle] = useState(true);
 
     const { isLoading, error, data: queryData, refetch } = useQuery({
@@ -23,7 +24,6 @@ function StudentHome() {
         queryKey: ['studentqaps'],
         staleTime: 60000,
     })
-
 
     useEffect(() => {
         if (queryData) {
@@ -61,10 +61,10 @@ function StudentHome() {
         setIsModalOpen(true);
     }
     return (
-        <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200 " >
+        <div className="bg-gradient-to-tr from-baseblue via-baseblue to-blue-200" >
             {isModalOpen ? <PostModal title={modalTitle} content={modalContent} lang={modalLang} setIsModalOpen={setIsModalOpen} /> :
                 <div className="py-16 min-h-screen">
-                    <Searcher setAnswers={setAnswers} answers={answers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery}/>
+                    <Searcher query={query} setQuery={setQuery} setAnswers={setAnswers} answers={answers} setShouldFilter={setShouldFilter} toggle={toggle} setToggle={setToggle} userQuery={userQuery} setUserQuery={setUserQuery}/>
                     
                     <AnimatePresence>
                         <motion.div key="answer-container" initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 100 }}>

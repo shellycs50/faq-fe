@@ -94,8 +94,8 @@ function Login() {
   
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
+    <div className="min-h-screen flex items-center justify-center bg-baseblue">
+      <div className="bg-white p-8 rounded-xl shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-6">Login</h2>
         <h4 className={`${isError ? "pb-6 text-lg text-red-500" : "pb-6 text-lg text-white"}`}>The provided credentials are invalid.</h4>
         <form>
@@ -132,7 +132,7 @@ function Login() {
           
         </form>
         <p className='my-4'>
-          <a onClick={guestSignIn} className="text-blue-500 cursor-pointer">Sign in as guest</a>
+          Just browsing? <a onClick={guestSignIn} className="text-blue-500 cursor-pointer">Sign in as guest</a>
           </p>
         <p className="my-4">
           Don't have an account? <Link to="/register" className="text-blue-500">Register here</Link>.

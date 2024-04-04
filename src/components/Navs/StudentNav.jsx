@@ -19,8 +19,8 @@ const StudentNav = ({ LogOut }) => {
     const [fontSize, setFontSize] = useState("text-xl");
 
     const listenScrollEvent = () => {
-        window.scrollY > 20 ? setnavColor("from-juicypastel to-black") : setnavColor("bg-transparent");
-        window.scrollY > 20 ? setFontColor("text-offwhite") : setFontColor("text-black");
+        window.scrollY > 20 ? setnavColor("bg-deepblue") : setnavColor("");
+        window.scrollY > 20 ? setFontColor("text-white") : setFontColor("text-black");
         window.scrollY > 20 ? setnavHeight("h-16") : setnavHeight("h-32");
     };
 
@@ -32,7 +32,7 @@ const StudentNav = ({ LogOut }) => {
     }, []);
 
     return (
-        <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-gradient-to-b dark:bg-gray-900 fixed top-0 left-0 right-0 w-screen transition-all duration-1000 flex flex-col justify-center z-10`}>
+        <div className={`${navHeight} ${navColor} ${fontColor} ${fontSize} bg-opacity-70 fixed top-0 left-0 right-0 w-screen transition-all duration-700 flex flex-col justify-center z-10`}>
             <nav>
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <motion.div whileHover={{ scale: 1.03, transition: { duration: .1 } }}>
