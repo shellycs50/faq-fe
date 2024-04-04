@@ -9,7 +9,7 @@ import {
 } from '../../components/ui/card';
 
 import { useEffect, useRef, useState } from 'react';
-function NewAnswerListing({ question, language, id, modalOpen, }) {
+function NewAnswerListing({ question, language, id, modalOpen, tutorImg}) {
 
     const [isTitleLengthened, setIsTitleLengthened] = useState(false)
     const questionNeedsShortening = question.length > 50
@@ -32,16 +32,6 @@ function NewAnswerListing({ question, language, id, modalOpen, }) {
         }
     }
 
-    const randomTutorGenerator = () => {
-        let tutors = [
-            "https://io-academy.uk/wp-content/uploads/2020/10/DSC_2808-01-520x670.jpeg",
-            "https://io-academy.uk/wp-content/uploads/2020/10/Mike4bw-520x670.jpg",
-        ]
-        const randomIndex = Math.floor(Math.random() * tutors.length)
-        return tutors[randomIndex]
-    }
-
-    const tutor = randomTutorGenerator()
     
     return (
 
@@ -52,7 +42,7 @@ function NewAnswerListing({ question, language, id, modalOpen, }) {
                     <div className='flex flex-col h-full justify-end'>
                         <div className='flex flex-row justify-between'>
                             <Avatar>
-                                <AvatarImage src={tutor} />
+                                <AvatarImage src={tutorImg} />
                             </Avatar>
                             <CardDescription>{language}</CardDescription>
                         </div>
