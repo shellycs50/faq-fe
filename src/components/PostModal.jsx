@@ -37,10 +37,7 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
     }, []);
 
     useEffect(() => {
-        if (modalContentRef.current) {
-            modalContentRef.current.scrollIntoView({ behavior: 'smooth' });
-            window.scrollBy(0, -500);
-        }
+        window.scrollTo(0, 0);
     }, [])
 
     return (
