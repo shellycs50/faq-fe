@@ -36,22 +36,12 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
         };
     }, []);
 
-
-    // function scrollToTop() {
-    //     var currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
-    //     if (currentPosition > 0) {
-    //         window.requestAnimationFrame(scrollToTop);
-    //         window.scrollTo(0, currentPosition - currentPosition / 8);
-    //     }
-
-    // }
-
-    // useEffect(() => {
-    //     if (modalContentRef.current) {
-    //         modalContentRef.current.scrollIntoView({ behavior: 'smooth' });
-    //         window.scrollBy(0, -500);
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (modalContentRef.current) {
+            modalContentRef.current.scrollIntoView({ behavior: 'smooth' });
+            window.scrollBy(0, -500);
+        }
+    }, [])
 
     return (
 

@@ -24,14 +24,14 @@ function Login() {
           password: password,
         }),
       });
-  
+
       const result = await response.json();
       saveCookie(result.token);
       if (result.rank == 1) {
         Cookies.set('admin', 1, { expires: 7 }); //for the scale of the project this is fine, and all admin routes are protected by auth key verification.
         navigate('/trainerpost')
       }
-      if (result.rank == 0){
+      if (result.rank == 0) {
         Cookies.set('admin', 0, { expires: 7 });
         navigate('/studenthome')
       }
@@ -47,7 +47,7 @@ function Login() {
 
   function saveCookie(token) {
     Cookies.set('auth_key', token, { expires: 7 });
-    
+
   }
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function Login() {
         Cookies.set('admin', 1, { expires: 7 }); //for the scale of the project this is fine, and all admin routes are protected by auth key verification.
         navigate('/trainerpost')
       }
-      if (result.rank == 0){
+      if (result.rank == 0) {
         Cookies.set('admin', 0, { expires: 7 });
         navigate('/studenthome')
       }
@@ -89,17 +89,20 @@ function Login() {
       console.error("Error:", error);
     }
   }
-  
 
-  
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-baseblue">
+      <div className='fixed top-14 left-52'>
+        <p className='text-white'>hi</p>
+      </div>
       <div className="bg-white p-8 rounded-xl shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-6">Login</h2>
         <h4 className={`${isError ? "pb-6 text-lg text-red-500" : "pb-6 text-lg text-white"}`}>The provided credentials are invalid.</h4>
         <form>
-        <div className="mb-4">
+          <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-600">
               Email
             </label>
@@ -128,16 +131,16 @@ function Login() {
             />
           </div>
           <button type='submit' className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition cursor-pointer" onClick={authenticate}>Login</button>
-           
-          
+
+
         </form>
         <p className='my-4'>
           Just browsing? <a onClick={guestSignIn} className="text-blue-500 cursor-pointer">Sign in as guest</a>
-          </p>
+        </p>
         <p className="my-4">
           Don't have an account? <Link to="/register" className="text-blue-500">Register here</Link>.
         </p>
-        
+
       </div>
     </div>
   );

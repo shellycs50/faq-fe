@@ -19,8 +19,8 @@ const AdminNav = ({ LogOut }) => {
     const [fontSize, setFontSize] = useState("text-xl");
 
     const listenScrollEvent = () => {
-        window.scrollY > 20 ? setnavColor("from-juicypastel to-black") : setnavColor("bg-transparent");
-        window.scrollY > 20 ? setFontColor("text-offwhite") : setFontColor("text-black");
+        window.scrollY > 20 ? setnavColor("bg-deepblue") : setnavColor("");
+        window.scrollY > 20 ? setFontColor("text-white") : setFontColor("text-black");
         window.scrollY > 20 ? setnavHeight("h-16") : setnavHeight("h-32");
     };
 

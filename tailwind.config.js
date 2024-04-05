@@ -28,6 +28,7 @@ module.exports = {
         '6px': '6px',
         '500px': '500px',
         '601px': '601px',
+        'screen-minus-128': 'calc(100vh - 128px)',
       },
       fontFamily: {
         'inter': ['Inter', 'serif'],

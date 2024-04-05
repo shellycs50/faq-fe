@@ -61,7 +61,7 @@ function TrainerEdit() {
             language_id: selectedLangId,
         }
 
-        if (answer !== "<p>Write your answer here.</p>") {
+        if (answer !== "") {
             bodyObj['answer'] = answer;
         }
 
@@ -81,8 +81,7 @@ function TrainerEdit() {
 
             const result = await response.json();
             if (result.message === "Success") {
-                useQuery.invalidateQueries('trainerqaps');
-                useQuery.invalidateQueries('studentqaps');
+                
                 navigate("/success");
             }
             if (result.message === "Validation error") {
