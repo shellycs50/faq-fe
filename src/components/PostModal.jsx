@@ -42,7 +42,7 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
 
     return (
 
-        <div className=' flex flex-col min-h-screen w-full justify-center items-center bg-baseblue pt-20 md:pt-32 -z-10'>
+        <div className='flex flex-col min-h-screen w-full justify-center items-center bg-baseblue pt-20 md:pt-32 -z-10'>
             <div className=''>
                 <div className="flex flex-col justify-center items-center rounded-3xl p-10 h-full max-w-7xl relative" ref={modalContentRef}>
                     <AnimatePresence >
