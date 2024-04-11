@@ -95,9 +95,7 @@ function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-baseblue">
-      <div className='fixed top-14 left-52'>
-        <p className='text-white'>hi</p>
-      </div>
+      
       <div className="bg-white p-8 rounded-xl shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-6">Login</h2>
         <h4 className={`${isError ? "pb-6 text-lg text-red-500" : "pb-6 text-lg text-white"}`}>The provided credentials are invalid.</h4>

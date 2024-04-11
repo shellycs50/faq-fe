@@ -80,7 +80,7 @@ function ContainerAnswerListing({ modalOpen, answers, isAnswer, shouldFilter }) 
                 ))}
 
 
-                {/* wasteful of compute */}
+                
                 {shouldFilter && !shouldRedGreen ? (
                     <motion.div key={Math.random() * 100} initial={{ opacity: 0 }} animate={controls} className="w-96 h-36" >
                         <div className="text-2xl text-center text-white">No results found</div>
