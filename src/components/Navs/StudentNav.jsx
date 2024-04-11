@@ -52,6 +52,7 @@ const StudentNav = ({ LogOut }) => {
                                 <Link to="/studenthome">
                                     <DropdownMenuItem>Home</DropdownMenuItem>
                                 </Link>
+                                <DropdownMenuSeparator />
                                 <Link to="/studentpost">
                                     <DropdownMenuItem>Ask Question</DropdownMenuItem>
                                 </Link>

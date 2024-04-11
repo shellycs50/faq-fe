@@ -36,26 +36,13 @@ function PostModal({ content, setIsModalOpen, title, lang }) {
         };
     }, []);
 
-
-    // function scrollToTop() {
-    //     var currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
-    //     if (currentPosition > 0) {
-    //         window.requestAnimationFrame(scrollToTop);
-    //         window.scrollTo(0, currentPosition - currentPosition / 8);
-    //     }
-
-    // }
-
-    // useEffect(() => {
-    //     if (modalContentRef.current) {
-    //         modalContentRef.current.scrollIntoView({ behavior: 'smooth' });
-    //         window.scrollBy(0, -500);
-    //     }
-    // }, [])
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     return (
 
-        <div className=' flex flex-col min-h-screen w-full justify-center items-center bg-baseblue pt-20 md:pt-32 -z-10'>
+        <div className='flex flex-col min-h-screen w-full justify-center items-center bg-baseblue pt-20 md:pt-32 -z-10'>
             <div className=''>
                 <div className="flex flex-col justify-center items-center rounded-3xl p-10 h-full max-w-7xl relative" ref={modalContentRef}>
                     <AnimatePresence >

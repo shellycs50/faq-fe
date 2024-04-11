@@ -82,7 +82,7 @@ const handleToggleChange = (event) => {
 
 return (
     <div onSubmit={(e) => e.preventDefault()} className="w-full flex flex-row pt-20 justify-center font-sans sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl -z-10">
-        <form className="gap-4 md:gap-0 flex flex-col md:flex-row md:justify-evenly p-0 border-b-solid border-black  text-black w-1/2 lg:w-2/5 placeholder-slate-900">
+        <form className="gap-4 md:gap-0 flex flex-col md:flex-row md:justify-evenly p-0 border-b-solid border-black  text-black w-10/12 sm:w-3/5 lg:w-2/5 placeholder-slate-900">
             <motion.input className="text-left placeholder-muted-foreground shadow-2xl w-full 
             text-slate-900 py-6 px-8 lg:py-6 lg:px-12 border-2 rounded-full outline-none bg-slate-200 focus:bg-white 
             transition-all duration-500 ease-in-out" 

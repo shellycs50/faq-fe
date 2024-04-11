@@ -28,6 +28,8 @@ module.exports = {
         '6px': '6px',
         '500px': '500px',
         '601px': '601px',
+        'screen-minus-128': 'calc(100vh - 128px)',
+        'seppy': '90%',
       },
       fontFamily: {
         'inter': ['Inter', 'serif'],

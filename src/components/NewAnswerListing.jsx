@@ -1,3 +1,4 @@
+import { Separator } from '../../components/ui/separator';
 import { Avatar, AvatarImage, AvatarFallback } from '../../components/ui/avatar';
 import {
     Card,
@@ -9,7 +10,7 @@ import {
 } from '../../components/ui/card';
 
 import { useEffect, useRef, useState } from 'react';
-function NewAnswerListing({ question, language, id, modalOpen, tutorImg}) {
+function NewAnswerListing({ question, language, id, modalOpen, tutorImg, conditionalStyles }) {
 
     const [isTitleLengthened, setIsTitleLengthened] = useState(false)
     const questionNeedsShortening = question.length > 50
@@ -32,11 +33,10 @@ function NewAnswerListing({ question, language, id, modalOpen, tutorImg}) {
         }
     }
 
-    
     return (
 
-        <a onClick={() => { modalOpen(id) }} onMouseEnter={() => handleHover()} onMouseLeave={() => handleEndHover()} className='w-full h-full'>
-            <Card>
+        <a onClick={() => { modalOpen(id) }} onMouseEnter={() => handleHover()} onMouseLeave={() => handleEndHover()} className="w-screen md:w-full h-full flex flex-col">
+            <Card className={`w-11/12 self-center md:w-full ${conditionalStyles}`}>
                 <CardHeader>
                     <CardTitle>{!isTitleLengthened && questionNeedsShortening ? `${question.slice(0, 50)}...` : question}</CardTitle>
                     <div className='flex flex-col h-full justify-end'>
