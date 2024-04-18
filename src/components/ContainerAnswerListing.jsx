@@ -52,7 +52,7 @@ function ContainerAnswerListing({ modalOpen, answers, isAnswer, shouldFilter }) 
                                         <motion.div key={i} initial={{ x: -10 }} animate={{ x: 0, transition: { duration: i / 10 } }} className="w-full">
                                             <motion.div key={i} initial={{ opacity: 0 }} animate={controls} whileHover={{ y: -3, scale: 1.01, transition: { duration: .3 } }}
                                                 >
-                                                <NewAnswerListing conditionalStyles={`md:max-w-none h-full md:w-96 md:h-36 ${item.question.length > 50 && "group hover:h-48"} transition-all duration-700 flex flex-row justify-center ${!shouldRedGreen ? "border-4 md:border-slate-200 rounded-xl" : item.score > 0 ? "border-4 border-green-300 rounded-xl" : "border-4 border-red-100 rounded-xl"}`} tutorImg={randomTutorGenerator(item)} key={i} question={item.question} answer={item.answer} answerer_id={item.answerer_id} language={item.language} id={i} modalOpen={modalOpen} />
+                                                <NewAnswerListing conditionalStyles={`md:max-w-none h-full md:w-96 md:h-36 ${item.question.length > 50 && "group hover:h-52"} transition-all duration-700 flex flex-row justify-center ${!shouldRedGreen ? "border-4 md:border-slate-200 rounded-xl" : item.score > 0 ? "border-4 border-green-300 rounded-xl" : "border-4 border-red-100 rounded-xl"}`} tutorImg={randomTutorGenerator(item)} key={i} question={item.question} answer={item.answer} answerer_id={item.answerer_id} language={item.language} id={i} modalOpen={modalOpen} />
                                             </motion.div>
                                         </motion.div>
                                     </motion.div>
